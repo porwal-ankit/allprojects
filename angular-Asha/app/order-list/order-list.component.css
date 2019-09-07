@@ -1,0 +1,405 @@
+
+#middle-section {
+    padding-top: 18px;
+    padding-left:18px;
+    padding-right:18px;
+}
+
+.paymentMethodRec {
+    background-color: #f4f4f4;
+    border: 1px solid #cccccc;
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    min-width: 340px;
+}
+.pageTitle {
+    font-size: 18px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: 600;
+    color: rgba(0,0,0,1);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 25px;
+}
+.paymentMethodRec input[type="radio"], img {
+    display: inline-block;
+    vertical-align: middle;
+}
+.paymentMethodRec input[type="radio"] {
+    margin: 20px 10px 20px 0px;
+}
+.paymentMethodRec input[type="radio"]:first-of-type {
+}
+#middle-section form {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px 18px;
+}
+.paymentMethodRec label img {
+    vertical-align: middle;
+    height: 30px;
+}
+.paymentMethodRec input[type="text"] {
+    background-color: #ffffcc;
+    border: 1px solid rgba(0,0,0,.1);
+    font-family: inherit;
+    font-size: 12px;
+    padding: 6px;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    line-height: normal;
+}
+.paymentMethodRec .subtext {
+    color: rgba(153,153,153,1);
+    max-width: 250px;
+}
+.leftIndent {
+    margin-left: 2em;
+}
+.paymentMethodRec active {
+    height: auto;
+    opacity: 1;
+}
+.paymentMethodRec .inactive * {
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    border-width: 0;
+    opacity: 0;
+}
+.purchaseOrderInputWidth {
+    width: 250px;
+}
+.continueButton {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    padding-top: 8px;
+    padding-right: 48px;
+    padding-bottom: 8px;
+    padding-left: 48px;
+    font-weight: 600;
+    cursor: pointer;
+    display: table;
+    font-size: 18px;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    transition: background-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+    white-space: nowrap;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+}
+.downloadButton {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    padding-top: 8px;
+    padding-right: 48px;
+    padding-bottom: 8px;
+    padding-left: 48px;
+    font-weight: 600;
+    cursor: pointer;
+    display: table;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    transition: background-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+    white-space: nowrap;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+}
+.errorMsg {
+    color: rgba(255,0,0,1);
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.note {
+    margin-top: 40px;
+    text-align: left;
+    display: block;
+    width: 340px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.noteSubtext {
+    color: rgba(153, 153, 153, 1);
+}
+#onaccount {
+    margin-top: -.5em
+}
+#note {
+    width: 340px;
+    margin: 6px 0px;
+    resize: vertical;
+    border-top-color: #ccc;
+    border-right-color: #ccc;
+    border-bottom-color: #ccc;
+    border-left-color: #ccc;
+    font-size: 13px;
+    font-family: "Lato", sans-serif;
+    min-height: 86px;
+}
+.note label {
+    font-size: 14px;
+}
+.continueButton:hover {
+    background-color: #3096ff;
+}
+.continueButton:active {
+    background-color: red;
+}
+.animate * {
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
+}
+.total {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 40px;
+}
+.total span {
+    font-size: .75em;
+    line-height: 0.5em;
+    vertical-align: baseline;
+    position: relative;
+    top: -0.2em;
+}
+.paymentMethodRec label {
+    font-size: 1.5em;
+}
+.imgInfoTable {
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 440px;
+}
+#middle-section .imgInfoTable div .imgInfoValue.sizeCell span {
+    color: #aaa;
+    margin-right: .5em;
+    margin-left: .5em;
+}
+.downloadImg {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.previousImg {
+    text-align: left;
+    margin-bottom: 4px;
+    width: 340px;
+}
+.downloadHorzRule {
+    font-size: 0px;
+    line-height: 100%;
+    background-color: rgba(204,204,204,1);
+    display: block;
+    height: 1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-width: 440px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.downloadCheck {
+    text-align: center;
+}
+.downloadCheck img {
+    height: 60px;
+}
+.downloadImg img {
+    max-width: 340px;
+    max-height: 115px;
+}
+.previousImg img {
+    max-width: 340px;
+    max-height: 115px;
+}
+.imgInfoTable .imgInfoLabel {
+    width: 90px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: right;
+    padding-right: 10px;
+    vertical-align: top;
+    display: table-cell;
+}
+#middle-section h2 {
+    text-align: center;
+}
+.downloadSub {
+    text-align: left;
+    color: rgba(102,102,102,1);
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 340px;
+}
+.imgInfoTable .imgInfoValue {
+    display: table-cell;
+}
+.imgInfoTable > div {
+    display: table-row;
+}
+.downloadButton:hover {
+    background-color: #3096ff;
+}
+.downloadButton:active {
+    background-color: red;
+}
+.downloaded:hover {
+    background-color: red;
+}
+.receipt {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+.receipt span {
+    color: #aaa;
+    margin-right: .5em;
+    margin-left: .5em;
+}
+.downloaded {
+    background-color: rgba(255,0,0,1);
+}
+.MyAcctMenu {
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+    position: sticky;
+    top: 68px;
+    left: 0;
+    float: left;
+    padding-right: 30px;
+}
+.MyAcctMenu li {
+    list-style-type: none;
+    margin: 0px;
+    padding: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1.2em;
+}
+.MyAcctMenu ul {
+    margin: 0px;
+    padding: 0px;
+}
+.MyAcctMenu li:hover {
+    color: #3096ff;
+}
+.historyCell2 .basketData .title {
+    width: 90px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: right;
+    padding-right: 10px;
+    vertical-align: top;
+}
+.separator {
+    margin: 0px 3px;
+}
+.historyCell2 .basketData > div > div {
+    display: table-cell;
+    vertical-align: top;
+}
+.historyCell2 .basketData > div {
+    display: table-row;
+}
+.historyCell2 .basketData .data {
+}
+.MyAcctContent {
+    display: table;
+}
+.MyAcctContent div:first-of-type {
+    margin-top: 0;
+}
+.MyAcctMenu .selected {
+    color: rgba(255,255,255,1);
+    background-color: #3096ff;
+    cursor: auto;
+}
+.MyAcctMenu .selected:hover {
+    color: white;
+}
+#history {
+    /* [disabled]background-color: rgba(102,255,102,1);
+*/
+    position: relative;
+}
+.MyAcctMenu ul li a {
+    color: inherit;
+}
+.historyTable {
+    display: table;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgba(204,204,204,1);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.historyOrder .orderTotal {
+    float: right;
+    padding-left: 20px;
+    padding-right: 2px;
+}
+.historyOrder span {
+    padding-right: 20px;
+}
+.historyOrder a {
+    color: inherit;
+}
+div.historyOrder + div.historyTable {
+    border-bottom:none;
+}
+.historyOrder {
+    margin-top: 20px;
+    background-color: rgba(102,102,102,1);
+    color: white;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 6px;
+}
+.historyTable > div {
+    display: table-cell;
+    vertical-align: top;
+    padding-left: 20px;
+}
+#history .historyTable div:first-child {
+    padding-left: 0;
+}
+.historyCell1 {
+    font-size: 13px;
+    white-space: nowrap;
+}
+.MyAcctMenu ul li a:hover {
+    text-decoration: none;
+}

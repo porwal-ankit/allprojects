@@ -1,0 +1,5 @@
+{
+    "require": {
+        "seoshop/seoshop-php": "1.8"
+    }
+}

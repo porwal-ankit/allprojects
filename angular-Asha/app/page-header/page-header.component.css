@@ -1,0 +1,92 @@
+.root {
+	display: flex;
+	align-items: center;
+	background: white;
+	font-family: Lato, sans-serif;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	z-index: 15;
+	padding: 1rem;
+	z-index: 10000000;
+}
+
+.logo {
+	background-image: url('./assets/logo.svg');
+	background-repeat: no-repeat;
+	width: 18rem;
+	height: 4rem;
+	background-size: contain;
+}
+
+@media only screen and (max-width: 425px) {
+    .logo {
+        display: none;
+    }
+}
+
+.right {
+	display: flex;
+	font-size: 1rem;
+	align-items: center;
+}
+
+.right > * {
+	margin-right: 1rem;
+}
+
+.right svg {
+	height: 2.6rem;
+	margin-top: 1,2rem;
+	margin-right: 0.6rem;
+	vertical-align: top;
+	fill: #000;
+	transition: fill .2s ease;
+}
+
+.right a {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	padding: 0.5rem;
+	color: #000;
+}
+
+@media only screen and (max-width: 425px) {
+    .right a span {
+		display: none;
+	}
+}
+
+.right a:hover {
+	background-color: #3096ff;
+	color: #FFF;
+}
+
+.center {
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.search {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid #d6d1d1;
+}
+
+.search input {
+	margin-left: 2px;
+	border: none;
+	outline: none;
+}
+
+.search i {
+	background-color: #f27933;
+	border: 1px solid #f27933;
+	color: #FFF;
+}

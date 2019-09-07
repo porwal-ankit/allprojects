@@ -1,0 +1,325 @@
+
+
+#price-table {
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #E1E1E1;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    margin-top: 16px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    max-width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+}
+
+#price-table-headline {
+    font-size: 18px;
+    color: #333;
+    font-style: normal;
+    line-height: normal;
+    font-weight: bold;
+    font-variant: normal;
+    text-transform: none;
+    color: rgba(51,51,51,1);
+    text-align: center;
+    width: 100%;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+#price-table-headline div {
+    display: inline;
+    white-space: nowrap;
+}
+
+#price-left {
+    flex-grow: 1;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.pricing-parent-div {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.pricing-parent-div div {
+    line-height: 20px;
+}
+
+label {
+    margin-bottom: 0px;
+}
+
+.label-div {
+    white-space: nowrap;
+    min-width: 12em;
+    padding-right: .5em;
+}
+
+.label-div input {
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+}
+
+.label-div label {
+    margin-left: 0.5em;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+a.tooltipIcon {
+    position: relative;
+    font-family: "Open Sans", Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    cursor: default;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #3096ff;
+}
+
+a:link {
+    text-decoration: none;
+    color: #3096ff;
+}
+
+
+.priceinfo {
+    color: rgba(153,153,153,1);
+    margin-left: 3px;
+}
+
+
+a.tooltipIcon span {
+    display: none;
+    z-index: 3;
+}
+
+.pricing-parent-div div {
+    line-height: 20px;
+}
+
+.size-amt-parent-div {
+    width: 100%;
+}
+
+.amt-div {
+    float: right;
+    background-color: #e1e1e1;
+    font-weight: 300;
+    color: #A2A2A2;
+    padding-left: 5px;
+}
+
+.size-div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.size-div>div {
+    padding-right: 10px;
+}
+
+.size-div::before {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+    content: ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . " ". . . . . . . . . . . . . . . . . . . . ";
+}
+
+.size-div div:nth-of-type(1) {
+    background-color: #e1e1e1;
+    display: inline-block;
+    min-width: 6em;
+    text-align: right;
+}
+
+.pricing-parent-div div {
+    line-height: 20px;
+}
+
+.size-div div:nth-of-type(2) {
+    background-color: #e1e1e1;
+    display: inline-block;
+    min-width: 8.1em;
+    text-align: right;
+}
+
+.size-div div:nth-of-type(3) {
+    background-color: #e1e1e1;
+    display: inline-block;
+    min-width: 5em;
+    text-align: right;
+}
+
+.size-div div:nth-of-type(4) {
+    background-color: #e1e1e1;
+    display: inline-block;
+    min-width: 12.1em;
+    text-align: right;
+    padding-right: 4px;
+}
+
+#price-right {
+    align-self: center;
+    flex-grow: 1;
+}
+
+#AddToCartButtonWrapper {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+}
+
+#AddToCartButton {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    padding-top: 8px;
+    padding-right: 16px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    transition: background-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    white-space: nowrap;
+}
+
+#AddToCartButton svg {
+    height: 1.3em;
+    fill: white;
+    margin-right: 1em;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+
+a.tooltipIcon:hover span, a.tooltipIcon:focus span {
+    display:block;
+    position:absolute;
+    top:25px;
+    left:-60px;
+    width: auto;
+    background-color: #fff;
+    color: rgba(51,51,51,1);
+    min-width: 315px;
+    width: 315px;
+	-webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.1);
+	-moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.1);
+	box-shadow: 0 4px 4px 0 rgba(0,0,0,0.1);
+	border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    padding:10px;
+    white-space:normal;
+    line-height:14px;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+}
+a.tooltipIcon:hover span::after, a.tooltipIcon:focus span::after {
+    display:block;
+    position:absolute;
+    content: url(/assets/img/tooltip-arrow.png);
+    top:-11px;
+    left:55px;
+    width: 22px;
+    height:11px;
+}
+
+.bundle-desc {
+    margin-left: 21px;
+    margin-bottom: 10px;
+    width: 85%;
+	font-weight:300;
+}
+
+#calc, #calcSelect {
+    white-space: normal;
+}
+
+#calc select, #calc .pricing-parent-div, #calcSelect select {
+    transition: all 750ms;
+    margin-left: 20px;
+    clear: left;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.reveal {
+    display: block;
+}
+
+.rm-desc {
+    margin-left: 25px;
+    margin-top: 6px;
+    margin-bottom: 14px;
+}
+
+.hide-calc {
+    display: none;
+}
+
+#need-to-call-us {
+    font-weight: bold;
+    color: rgba(255,0,0,1);
+    text-align: center;
+    margin-top: 20px;
+}
+
+#priceRm {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5em;
+    margin-top: 20px;
+}
+
+.selectedPrice {
+    color: #000;
+    font-weight: bold;
+}
+
+.customSpace {
+    padding-top: 10px;
+}
+
+.customSpace input {
+    margin-left: 28px;
+}
+
+.customSpace select {
+    margin-left: 20px;
+}
+
+@media all and (max-width: 666px) {
+    #price-table-headline {
+        font-size: 18px;
+    }
+}

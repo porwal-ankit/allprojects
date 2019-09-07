@@ -1,0 +1,56 @@
+<!-- <div [ngClass]="{'toolbar-left': true, 'centeredSearch': showSearchFieldCentered}" [formGroup]="form">
+  <mat-form-field>
+    <input #searchBox type="search" matInput class="search" placeholder="Suchen" formControlName="search" (keyup)="checkSearch($event)"
+      [matAutocomplete]="auto">
+  </mat-form-field>
+
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let option of options | async" [value]="option.value" [innerHTML]="option.text"></mat-option>
+  </mat-autocomplete>
+
+</div> -->
+<div class="root">
+    <div class="left">
+        <a routerLink="/">    
+            <div class="logo"></div>
+        </a>
+    </div>
+    <div class="center">
+        <div *ngIf="getHideSearch()" class="search" [formGroup]="form">
+            <mat-form-field >
+                <input #searchBox type="search" matInput class="search" placeholder="Suchen" formControlName="search" (keyup)="checkSearch($event)" [matAutocomplete]="auto">
+            </mat-form-field>
+        
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of options | async" [value]="option.value" [innerHTML]="option.text"></mat-option>
+            </mat-autocomplete>
+            <i class="material-icons">search</i>
+        </div>
+    </div>
+    <div class="right">
+        <a *ngIf="!user.isLoggedIn()" [routerLink]="[{ outlets: { 'modal': ['login'] } }]" queryParamsHandling="merge" class="ellipsis_cell">
+            <i class="material-icons">account_circle</i>
+            <span>LogIn / Registrieren</span>
+        </a>
+
+        <a routerLink="/gallery">
+            <i class="material-icons">grid_on</i>
+            <span>Projekte</span>
+        </a>
+
+        <a routerLink="/cart">
+            <i class="material-icons">shopping_cart</i>
+            <span>Warenkorb</span>
+            <!-- <span *ngIf="user.isLoggedIn()" class="cart-count" id="info_basket_articles">{{basketCount}}</span> -->
+        </a>
+      
+        <a *ngIf="user.isLoggedIn()" routerLink="/account/profile" class="ellipsis_cell">
+            <i class="material-icons">account_circle</i>
+            <span>{{user?.getUser()?.givenName}} {{user?.getUser()?.familyName}}</span>
+        </a>
+
+        <a *ngIf="user.isLoggedIn()" href="javascript:void(0)">
+            <i class="material-icons">menu</i>
+        </a>
+    </div>
+</div>

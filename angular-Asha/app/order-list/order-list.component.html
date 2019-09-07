@@ -1,0 +1,91 @@
+
+<!-- Purchase History Section -->
+<section id="history">
+
+  <ng-container *ngFor="let order of orders | async; let isFirst=first;">
+  <div class="historyOrder">
+    <span class="orderTotal">Total: {{order.currency | currencySymbol}}{{order.totalPrice}}</span>
+    <ng-container *ngIf="order.type=='final'"><span>Einkaufsnummer: {{order.number}}</span></ng-container>
+    <ng-container *ngIf="order.type=='proposal'"><span>Angebotsnummer: {{order.id}}</span></ng-container>
+    <span>Eingekauft: {{order.createdOn | date:"MMMM d, y"}}</span>
+    <span><a (click)="downloadOrderPdf(order)">Ansicht Rechnung</a></span>
+
+    <ng-container *ngIf="order.type=='proposal'"><span><a (click)="moveOrderToCart(order)">In den Warenkorb</a></span></ng-container>
+  </div>
+  <div class="historyTable" *ngFor="let article of order.articles">
+    <div class="historyCell1">
+      <div class="previousImg"><img src="{{getFittingAssetFile(article.asset, 115)}}"></div>
+      <a *ngIf="isAssetDownloadable(order, article)" (click)="downloadAsset(order, article)">Download</a>
+      <a *ngIf="article.asset && isArticleExpired(article)" (click)="showAssetDetail(article.asset)">Erneuerung der Lizenz</a>
+
+      <ng-container *ngIf="order.type=='proposal'">
+        <span class="separator" *ngIf="(article.asset && isArticleExpired(article)) || isAssetDownloadable(order, article)">|</span>
+        <a (click)="moveToCart(order, article)">In den Warenkorb</a>
+        <span class="separator">|</span>
+        <a (click)="deleteArticle(order, article)">Löschen</a>
+      </ng-container>
+    </div>
+    <div class="historyCell2">
+      <div class="basketData">
+        <div>
+          <div class="title">Image ID</div>
+          <div class="data" *ngIf="article.asset"><a (click)="showAssetDetail(article.asset)">{{article.articleName}}</a></div>
+          <div class="data" *ngIf="!article.asset">{{article.articleName}}</div>
+        </div>
+        <div *ngIf="article.asset">
+          <div class="title">Fotograf</div>
+          <div class="data">
+            <ng-container *ngIf="!article.asset || !article.asset.collection">
+              <a class="link" title="See more from this photographer" (click)="searchPhotographer(article.asset.supplier.id)">{{article.asset?.supplier?.copyright}}</a>
+            </ng-container>
+            <ng-container *ngIf="article.asset && article.asset.collection">
+              <ng-container *ngIf="article.asset.copyright">
+                <a class="link" title="See more from this photographer" (click)="searchCopyright(article.asset.copyright)">{{article.asset?.copyright}}</a>
+                /
+              </ng-container>
+              <a class="link" title="See more from this collection" (click)="searchCollection(article.asset.collection.id)">{{article.asset?.collection?.name}}</a>
+            </ng-container>
+          </div>
+        </div>
+        <div>
+          <div class="title">Lizenz Typ</div>
+          <div class="data">{{article?.appliedPricelist | uppercase}} <span class="separator">|</span> <a (click)="showTerms()">Lizenzbestimmungen</a></div>
+        </div>
+        <div *ngIf="article.asset">
+          <div class="title">Medien Art</div>
+          <div class="data">{{getMediaType(article.asset)}}</div>
+        </div>
+        <div *ngIf="isModelReleaseAvailable(article) || isPropertyReleaseAvailable(article)">
+          <div class="title">Releases</div>
+          <div class="data">
+            <ng-container *ngIf="isModelReleaseAvailable(article)">Model Release vorhanden. </ng-container>
+            <ng-container *ngIf="isPropertyReleaseAvailable(article)">Property Release vorhanden. </ng-container>
+          </div>
+        </div>
+        <div *ngIf="article.asset">
+          <div class="title">Überschrift</div>
+          <div class="data" style="white-space:normal;">{{article?.asset?.caption}}</div>
+        </div>
+        <div *ngIf="article.asset">
+          <div class="title">Dateigrösse</div>
+          <div class="data"> {{calculateRawFileSize(article)}} <span class="separator">|</span> {{calculateSize(article).width}} x {{calculateSize(article).height}} px <span class="separator">|</span> {{calculateMegapixel(article)}} <span class="separator">|</span> {{calculatePrintSize(article)}} </div>
+        </div>
+        <div *ngIf="article.info">
+          <div class="title">Lizenz</div>
+          <div class="data" style="white-space:pre-line;">{{article.info}}</div>
+        </div>
+        <div>
+          <div class="title">Preis</div>
+          <div class="data">{{article.currency | currencySymbol}}{{getArticlePrice(article, order) | number:'1.2-2'}}</div>
+        </div>
+        <div *ngIf="articleHasExpirationDate(article)">
+          <div class="title" *ngIf="isArticleExpired(article)">Abgelaufen</div>
+          <div class="title" *ngIf="!isArticleExpired(article)">Läuft ab</div>
+          <div class="data">{{article.expirationDate | date:"MMMM d, y"}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </ng-container>
+</section>
+<!-- .Purchase History Section -->

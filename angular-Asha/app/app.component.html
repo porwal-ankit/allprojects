@@ -1,0 +1,6 @@
+<app-page-header *ngIf="showFullPage()"></app-page-header>
+<router-outlet></router-outlet>
+<!--<app-page-footer *ngIf="showFullPage()"></app-page-footer>-->
+<router-outlet name="modal"></router-outlet>
+
+<app-lightbox-bar *ngIf="showFullPage()"></app-lightbox-bar>

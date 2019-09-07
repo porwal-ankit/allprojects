@@ -1,0 +1,125 @@
+<div class="headerWrapper">
+    <div></div>
+    <div>Projektboxen</div>
+    <div [formGroup]="sortForm">
+        Auswahl:
+        <select formControlName="sort">
+            <option value="modificationDate">Sortieren nach Änderungsdatum</option>
+            <option value="creationDate">Sortieren nach Erstelldatum</option>
+            <option value="name">Sortieren nach Namen</option>
+            <option value="assets">Sortieren nach Grösse</option>
+            <option value="all">Zeige alle Projektboxen</option>
+            <option value="none">Verberge alle Projektboxen</option>
+        </select>
+        <div title="Reverse Sort Direction" (click)="switchReverseSort()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1305.382 1450.792">
+            <path d="M1301.502,985.043l-350.559,458.445c-3.513,4.613-8.984,7.303-14.771,7.303c-5.745,0-11.219-2.73-14.731-7.303 l-350.57-458.445c-2.595-3.369-3.887-7.383-3.887-11.395c0-3.891,1.177-7.902,3.69-11.273c5.059-6.68,13.826-9.188,21.617-6.117 l231.902,92.175V71.303c0-10.34,8.769-18.388,19.025-18.388h186.024c10.255,0,18.95,8.048,18.95,18.388v977.13l231.939-92.175 c7.782-3.07,16.482-0.562,21.511,6.117C1306.671,969.116,1306.63,978.344,1301.502,985.043z M734.614,488.405 c2.513-3.371,3.751-7.352,3.751-11.273c0-3.993-1.297-8.036-3.872-11.405L383.925,7.292C380.403,2.689,374.927,0,369.189,0 c-5.787,0-11.233,2.709-14.774,7.292L3.866,465.728c-5.128,6.68-5.147,15.917-0.1,22.678c5.018,6.68,13.699,9.188,21.481,6.117 l231.946-92.185v977.141c0,10.33,8.688,18.437,18.965,18.437h186.042c10.257,0,18.992-8.106,18.992-18.437V402.337l231.922,92.185 C720.877,497.593,729.544,495.085,734.614,488.405z"></path>
+        </svg></div>
+    </div>
+</div>
+
+<div class="galleryWrapper">
+
+    <!-- Gallery -->
+    <div *ngFor="let lightbox of lightboxes;" [class.galleryInactive]="!isGalleryActive(lightbox.id)" [class.galleryActive]="isGalleryActive(lightbox.id)">
+        <div class="galleryHandle" title="Hide/Show Gallery" (click)="switchGalleryActive(lightbox.id)">
+            <div class="galleryName">{{lightbox.name}}</div>
+            <div class="galleryRotator"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+                <polygon points="60.8457,24.5781 60.8457,231.4219 196.1543,128.5 "></polygon>
+            </svg></div>
+        </div>
+        <div class="actionMenu" [formGroup]="lightboxForms[ lightbox.id ].forms.action">
+            <select formControlName="action">
+                <option value="">Aktionen…</option>
+                <option value="create">neue Projektbox</option>
+                <option value="comment">Editieren</option>
+                <option value="delete">Löschen</option>
+                <option value="rename">Umbenennen</option>
+                <option value="send" [disabled]="isEmpty(lightbox)">Email</option>
+                <option value="duplicate" [disabled]="isEmpty(lightbox)">Duplizieren</option>
+                <option value="cart" [disabled]="isEmpty(lightbox)">In den Warenkorb</option>
+                <option value="zip" [disabled]="isEmpty(lightbox)">Download (.ZIP)</option>
+                <option value="pdf" [disabled]="isEmpty(lightbox)">Download (.PDF)</option>
+            </select>
+        </div>
+
+        <!-- Gallery Info -->
+        <div class="galleryInfo">
+            <h1>Anzahl Bilder: </h1>
+            {{lightbox.assets && lightbox.assets.length ? lightbox.assets.length : '0'}}
+            <h1>Erstellt vor: </h1>
+            {{lightbox?.creationDate | duration}}
+            <h1>Bearbeitet vor: </h1>
+            {{lightbox?.modificationDate | duration}}
+            <h1>Kommentar: </h1>
+        </div>
+        <div class="galleryComment">{{lightbox.comment}}</div>
+        <!-- Gallery Info -->
+
+        <!-- Gallery Actions Interface -->
+        <div class="gallery-actions-panel" [ngClass]="{'animate': true, 'inactive': !lightboxForms[ lightbox.id ].forms.action }">
+
+                <!-- Edit Comment -->
+                <div [ngClass]="{'active': (lightboxForms[ lightbox.id ].action == 'comment'), 'inactive': (lightboxForms[ lightbox.id ].action != 'comment') }" [formGroup]="lightboxForms[ lightbox.id ].forms.comment">
+                    <textarea name="comment" class="text-area cancel-pad" style="width:450px;" rows="3" placeholder="Kommentar (optional)" formControlName="comment"></textarea>
+                    <button type="button" class="default-button cancel-button" (click)="cancelAction( lightbox.id )">Abbrechen</button>
+                    <button type="button" class="default-button" (click)="updateComment( lightbox.id )">Speichern</button>
+                    <div class="action-msg">Der Kommentar ist limitiert auf 1000 Zeichen.</div>
+                    <div class="action-msg error" *ngIf="lightboxForms[ lightbox.id ].errorMessage != ''">{{lightboxForms[ lightbox.id ].errorMessage}}</div>
+                </div>
+                <!-- .Edit Comment -->                
+
+                <!-- Delete Gallery -->
+                <div [ngClass]="{'active': (lightboxForms[ lightbox.id ].action == 'delete'), 'inactive': (lightboxForms[ lightbox.id ].action != 'delete') }">
+                    <div class="action-alert cancel-pad">
+                        <div class="action-alert cancel-pad">Sind Sie sicher, dass Sie diesen Projektbox definitiv löschen wollen??</div>
+                    </div>
+                    <button type="button" class="default-button cancel-button" (click)="cancelAction( lightbox.id )">Abbrechen</button>
+                    <button type="submit" class="default-button" (click)="deleteLightbox( lightbox.id )">Projektbox löschen</button>
+                    <div class="action-msg">Diese Aktion kann nicht rückgängig gemacht werden.</div>
+                    <div class="action-msg error" *ngIf="lightboxForms[ lightbox.id ].errorMessage != ''">{{lightboxForms[ lightbox.id ].errorMessage}}</div>
+                </div>
+                <!-- .Delete Gallery -->
+
+                <!-- Rename Gallery -->
+            <div [ngClass]="{'active': (lightboxForms[ lightbox.id ].action == 'rename'), 'inactive': (lightboxForms[ lightbox.id ].action != 'rename') }" [formGroup]="lightboxForms[ lightbox.id ].forms.rename">
+                <input class="text-field cancel-pad" type="text" placeholder="Name" value="" style="width:200px;" formControlName="name">
+                <button type="button" class="default-button cancel-button" (click)="cancelAction( lightbox.id )">Abbrechen</button>
+                <button type="submit" class="default-button" (click)="renameLightbox( lightbox.id )">Projektbox umbenennen</button>
+                <div class="action-msg error" *ngIf="lightboxForms[ lightbox.id ].errorMessage != ''">{{lightboxForms[ lightbox.id ].errorMessage}}</div>
+            </div>
+                <!-- .Rename Gallery -->
+
+                <!-- Create project -->
+                <div [ngClass]="{'active': (lightboxForms[ lightbox.id ].action == 'create'), 'inactive': (lightboxForms[ lightbox.id ].action != 'create') }" [formGroup]="lightboxForms[ lightbox.id ].forms.projectName">
+                     <input class="text-field cancel-pad" type="text" placeholder="Projekt Name" name="projectName" value="" style="width:200px;" formControlName="projectName">
+                    <button type="button" class="default-button cancel-button" (click)="cancelAction( lightbox.id )">Abbrechen</button>
+                    <button type="button" class="default-button" (click)="CreateProject(lightbox.id)">Create Project</button>
+                    <div class="action-msg error" *ngIf="lightboxForms[ lightbox.id ].errorMessage != ''">{{lightboxForms[ lightbox.id ].errorMessage}}</div>
+                </div>
+                <!-- .Create project -->
+
+                <!-- Email Gallery -->
+            <div [ngClass]="{'active': (lightboxForms[ lightbox.id ].action == 'send'), 'inactive': (lightboxForms[ lightbox.id ].action != 'send') }" [formGroup]="lightboxForms[ lightbox.id ].forms.send">
+                <input class="text-field" type="text" placeholder="Email Addresse des Empfängers" style="width:250px;" formControlName="email">
+                <textarea name="comment" class="text-area cancel-pad" style="width:350px;" rows="1" placeholder="Kommentar (optional)" formControlName="comment"></textarea>
+                <button type="button" class="default-button cancel-button" (click)="cancelAction( lightbox.id )">Abbrechen</button>
+                <button type="button" class="default-button" (click)="sendMail( lightbox.id )">Sende Link</button>
+                <div class="action-msg">Der Empfänger erhält einen Link zu diesem Projektbox. Bei mehreren Empfängern werden die Adressen mit einem Komma getrennt.</div>
+                <div class="action-msg error" *ngIf="lightboxForms[ lightbox.id ].errorMessage != ''">{{lightboxForms[ lightbox.id ].errorMessage}}</div>
+            </div>
+                <!-- .Email Gallery -->
+
+        </div>
+        <!-- .Gallery Actions Interface -->
+
+        <!-- Thumbnail Matrix 1 -->
+        <div class="thumbMatrixWrapper" *ngIf="isGalleryActive(lightbox.id)">
+            <app-asset-list [assets]="getAssets(lightbox.id)" [lightboxId]="lightbox.id" [sortable]="true" (orderChange)="saveSorting(lightbox.id, $event)"></app-asset-list>
+        </div>
+        <!-- .Thumbnail Matrix -->
+
+    </div>
+    <!-- .Gallery -->
+
+
+</div>

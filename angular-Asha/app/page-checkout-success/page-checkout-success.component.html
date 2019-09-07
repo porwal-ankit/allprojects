@@ -1,0 +1,75 @@
+<section id="middle-section" *ngIf="order | async as orderData">
+
+  <!-- Download Wrapper -->
+  <div class="pageTitle">Download</div>
+  <div class="downloadCheck"><img src="/assets/icns/check.svg"></div>
+  <h2>Besten Dank für Ihren Einkauf.</h2>
+  <p class="downloadSub">Sie können Ihre eingekauften Daten über den untenstehenden Link downloaden oder über Ihre <a routerLink="/account/history">Einkaufsstatistik</a> Seite.</p>
+
+<ng-container *ngFor="let article of orderData.articles">
+  <div class="downloadImg"><img src="{{getFittingAssetFile(article.asset, 400)}}"></div>
+  <div class="imgInfoTable">
+    <div>
+      <div class="imgInfoLabel">Image ID</div>
+      <div class="imgInfoValue">{{article.articleName | removeFileExtension}}</div>
+    </div>
+    <div>
+      <div class="imgInfoLabel">Image</div>
+      <div class="imgInfoValue">
+          <ng-container *ngIf="!article.asset || !article.asset.collection">
+              {{article.asset?.supplier?.copyright}}
+          </ng-container>
+          <ng-container *ngIf="article.asset && article.asset.collection">
+              <ng-container *ngIf="article.asset.copyright">
+                  {{article.asset?.copyright}}
+                  /
+              </ng-container>
+              {{article.asset?.collection?.name}}
+          </ng-container>
+      </div>
+    </div>
+    <div>
+      <div class="imgInfoLabel">Lizenz Typ</div>
+      <div class="imgInfoValue">{{article?.appliedPricelist | uppercase}}</div>
+    </div>
+    <div>
+      <div class="imgInfoLabel">Medien Art</div>
+      <div class="imgInfoValue">{{getMediaType(article.asset)}}</div>
+    </div>
+      <div *ngIf="isModelReleaseAvailable(article) || isPropertyReleaseAvailable(article)">
+          <div class="imgInfoLabel">Freigaben</div>
+          <div class="imgInfoValue">
+              <ng-container *ngIf="isModelReleaseAvailable(article)">Model Release vorhanden. </ng-container>
+              <ng-container *ngIf="isPropertyReleaseAvailable(article)">Property Release vorhanden. </ng-container>
+          </div>
+      </div>
+    <div>
+      <div class="imgInfoLabel">Überschrift</div>
+      <div class="imgInfoValue">{{article?.asset?.caption}}</div>
+    </div>
+    <div>
+      <div class="imgInfoLabel">Dateigrösse</div>
+      <div class="imgInfoValue sizeCell">{{calculateRawFileSize(article)}} <span class="separator">|</span> {{calculateSize(article).width}} x {{calculateSize(article).height}} px <span class="separator">|</span> {{calculateMegapixel(article)}} <span class="separator">|</span> {{calculatePrintSize(article)}}</div>
+    </div>
+      <div *ngIf="article.info">
+          <div class="imgInfoLabel">Lizenz</div>
+          <div class="imgInfoValue" style="white-space:pre-line;">{{article.info}}</div>
+      </div>
+    <div>
+      <div class="imgInfoLabel">Preis</div>
+      <div class="imgInfoValue">{{article.currency | currencySymbol}}{{getArticlePrice(article, orderData) | number:'1.2-2'}}</div>
+    </div>
+  </div>
+  <div class="downloadButton" [ngClass]="{'downloaded': isArticleDownloaded(article)}" *ngIf="isAssetDownloadable(orderData, article)" (click)="downloadAsset(orderData, article)">Download</div>
+  <div class="downloadHorzRule"></div>
+</ng-container>
+
+
+  <div class="receipt"><a (click)="downloadOrderPdf(orderData)">Quittung</a>
+      <ng-container *ngIf="orderData.articles && orderData.articles.length > 1">
+        <span>|</span><a (click)="downloadOrderZip(orderData)">Batch Download ZIP File</a>
+      </ng-container>
+  </div>
+  <!-- .Download Wrapper -->
+
+</section>

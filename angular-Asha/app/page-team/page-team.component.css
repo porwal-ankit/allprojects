@@ -1,0 +1,39 @@
+:host {
+ display: block;
+ box-sizing: border-box;
+ margin:30px;
+}
+h1 {
+	font-size: 52px;
+	font-weight: 400;
+	text-align: center;
+	font-family: Merriweather;
+	margin-bottom:50px;
+	margin-top:0px;
+}
+.headshot {
+	height: 200px;
+	width: 200px;
+	background: no-repeat center center;	
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	border-radius: 100px;
+	margin-bottom: 10px;
+}
+.wrapper {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+.wrapper > div {
+	text-align: center;
+	margin: 20px 20px;
+}
+.name {
+	font-weight: 600;
+	font-size: larger;
+}

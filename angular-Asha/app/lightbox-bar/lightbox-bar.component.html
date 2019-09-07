@@ -1,0 +1,105 @@
+<ng-container *ngIf="userLogin.loggedIn && showLightboxBar">
+  <div id="galleries" [class.lightboxVisible]="isVisible()" [class.open]="tabOpen">
+    <div id="lightbox_handle" (click)="changeVisibility()">Projektbox: {{lightbox?.name}} [{{lightbox?.assets?.length ? lightbox?.assets?.length : '0'}}]
+      <div id="cta-rotator"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <polygon points="60.8457,24.5781 60.8457,231.4219 196.1543,128.5 "></polygon>
+      </svg></div>
+    </div>
+
+
+
+    <div id="gallery-wrapper">
+      <div id="gallery-form">
+        <form [formGroup]="form">
+          <select id="ocean" formControlName="lightboxSelection" (change)="lightboxChanged()">
+            <option value="" selected="selected">Please Select One</option>
+            <option *ngFor="let lb of lightboxes" [selected]="lb.id == lightbox?.id" [value]="lb.id">{{lb.name}}</option>
+
+            <optgroup label="Sort Menu By…">
+              <option value="sort_name" [disabled]="sortColumn=='name'">Name</option>
+              <option value="sort_creationDate" [disabled]="sortColumn=='creationDate'">Erstelldatum</option>
+              <option value="sort_modificationDate" [disabled]="sortColumn=='modificationDate'">Änderungsdatum</option>
+            </optgroup>
+          </select>
+          <select formControlName="action">
+            <option value="">Aktionen…</option>
+            <option value="edit">Editieren</option>
+            <option value="create">Erstellen</option>
+            <option value="delete">Löschen</option>
+            <option value="rename">Umbenennen</option>
+            <option value="send" [disabled]="isEmpty()">Email</option>
+            <option value="duplicate" [disabled]="isEmpty()">Duplizieren</option>
+            <option value="cart" [disabled]="isEmpty()">In den Warenkorb</option>
+            <option value="zip" [disabled]="isEmpty()">Download (.ZIP)</option>
+            <option value="pdf" [disabled]="isEmpty()">Download (.PDF)</option>
+          </select>
+          <span><strong>Bilder:</strong>{{lightbox && lightbox.assets && lightbox.assets.length ? lightbox.assets.length : '0'}}</span>
+          <div id="gallery-differentials"><span><strong>Erstellt:</strong>{{lightbox?.creationDate | duration}} </span><span><strong>Verändert:</strong>{{lightbox?.modificationDate | duration}} </span></div>
+        </form>
+      </div>
+    </div>
+
+    <div id="gallery-thumbs" *ngIf="action != 'edit' && action != 'send' && action != 'rename' && action != 'delete'">
+      <ng-container *ngIf="lightbox && lightbox.assets">
+        <ng-container *ngFor="let asset of lightbox.assets">
+          <app-asset-thumb width="auto" height="100px" [asset]="asset.asset" *ngIf="asset && asset.asset" (detail)="showAssetDetail($event)"></app-asset-thumb>
+        </ng-container>
+      </ng-container>
+    </div>
+
+
+
+
+
+
+
+    <div id="gallery-actions-panel" class="animate" [ngClass]="{'inactive': !action }">
+
+      <!-- Create Gallery -->
+      <div [ngClass]="{'active': (action == 'edit'), 'inactive': (action != 'edit') }" id="row-new" [formGroup]="formCreate">
+        <input id="name" class="text-field" type="text" placeholder="Name" style="width:200px;" formControlName="name">
+        <textarea name="comment" class="text-area cancel-pad" style="width:350px;" rows="1" placeholder="Comment (optional)" formControlName="comment"></textarea>
+        <button type="button" (click)="resetAction()" class="default-button cancel-button">Abbrechen</button>
+        <button type="button" (click)="createLightbox()" class="default-button">Projektbox erstellen</button>
+        <div class="action-msg error" *ngIf="errorMessage != ''">{{errorMessage}}</div>
+      </div>
+      <!-- .Create Gallery -->
+
+
+      <!-- Delete Gallery -->
+      <div [ngClass]="{'active': (action == 'delete'), 'inactive': (action != 'delete') }" id="row-delete">
+        <div class="action-alert cancel-pad">
+          <div class="action-alert cancel-pad">Sind Sie sicher, dass Sie den Projektbox definitiv löschen wollen?</div>
+        </div>
+        <button type="button" (click)="resetAction()" class="default-button cancel-button">Abbrechen</button>
+        <button id="delete-button" type="button" class="default-button" (click)="deleteLightbox()">Projektbox löschen</button>
+        <div class="action-msg">Dieser Vorgang kann nicht rückgängig gemacht werden.</div>
+        <div class="action-msg error" *ngIf="errorMessage != ''">{{errorMessage}}</div>
+      </div>
+      <!-- .Delete Gallery -->
+
+      <!-- Rename Gallery -->
+      <div [ngClass]="{'active': (action == 'rename'), 'inactive': (action != 'rename') }" id="row-rename" [formGroup]="formRename">
+        <input id="rename" class="text-field cancel-pad" type="text" placeholder="Name" style="width:200px;" formControlName="name">
+        <button type="button" (click)="resetAction()" class="default-button cancel-button">Abbrechen</button>
+        <button type="button" class="default-button" (click)="renameLightbox()">Projektbox neu benennen</button>
+        <div class="action-msg error" *ngIf="errorMessage != ''">{{errorMessage}}</div>
+      </div>
+      <!-- .Rename Gallery -->
+
+      <!-- Email Gallery -->
+      <div [ngClass]="{'active': (action == 'send'), 'inactive': (action != 'send') }" id="row-email" [formGroup]="formSend">
+        <input id="email" class="text-field" type="text" placeholder="Recipients’ email addresses" style="width:250px;" formControlName="email">
+        <textarea id="comment" name="comment" class="text-area cancel-pad" style="width:350px;" rows="1" placeholder="Comment (optional)" formControlName="comment"></textarea>
+        <button type="button" class="default-button cancel-button" (click)="resetAction()">Abbrechen</button>
+        <button type="button" class="default-button" (click)="sendMail()">Email Projektbox Link</button>
+        <div id="action-message" class="action-msg">Empfänger erhält einen Link zu diesem Projektbox. Für mehrere Email-Emfänger bitte mit Komma trennen.</div>
+        <div class="action-msg error" *ngIf="errorMessage != ''">{{errorMessage}}</div>
+      </div>
+      <!-- .Email Gallery -->
+
+
+    </div>
+
+  </div>
+</ng-container>

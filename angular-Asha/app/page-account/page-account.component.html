@@ -1,0 +1,22 @@
+<section id="middle-section">
+  <div class="pageTitle">Mein Konto</div>
+
+  <!-- My Account Sticky Menu -->
+  <nav class="MyAcctMenu">
+    <ul>
+      <li routerLink="/account/profile" [class.selected]="pageType == 'profile'">Profil</li>
+      <li routerLink="/account/quotes" [class.selected]="pageType == 'quotes'">Angebote</li>
+      <li routerLink="/account/history" [class.selected]="pageType == 'history'">Rechnungen</li>
+      <li><a (click)="userLogin.logout()">Abmelden</a></li>
+    </ul>
+  </nav>
+  <!-- .My Account Sticky Menu -->
+
+  <div class="MyAcctContent">
+
+    <app-profile *ngIf="pageType == 'profile'"></app-profile>
+    <app-order-list [orderType]="'final'" *ngIf="pageType == 'history'"></app-order-list>
+    <app-order-list [orderType]="'proposal'" *ngIf="pageType == 'quotes'"></app-order-list>
+
+  </div>
+</section>

@@ -1,0 +1,142 @@
+#matrix-header {
+    clear: left;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    height: 15px;
+    box-sizing: border-box;
+	display:table;
+}
+
+.found-count {
+	display:table-cell;
+	text-align:right;
+	white-space:nowrap;
+	padding: 0px 18px;
+}
+
+.search-filter-handle {
+    white-space: nowrap;
+	text-align:left;
+	display:table-cell;
+	padding: 0px 18px;
+}
+
+.found-criteria {
+    text-align: center;
+	display:table-cell;
+	width:100%;
+}
+
+.found-count span {
+    /*color: #666;*/
+}
+
+.showSearchFilters>app-asset-list {
+    padding-left: 200px;
+}
+
+.showSearchFilters>#search-filter-wrapper {
+    display: inline-block;
+}
+
+#search-filter-wrapper {
+    transition: all 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+    width: 200px;
+    overflow: auto;
+    top: 110px;
+    left: 0px;
+    position: absolute;
+    float: left;
+    white-space: nowrap;
+    display: none;
+    font-weight: 300;
+    padding: 0px 18px 0px 18px;
+    margin-right: 0px;
+    z-index: 9;
+    height: calc(100% - 300px);
+}
+
+#searchMode, #licenseMode, #formatMode, #orientationMode, #typeMode, #colorMode, #sizeMode, #collectionMode {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #CCC;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+#search-filter-wrapper h1 {
+    font-weight: 400;
+    line-height: normal;
+    font-variant: normal;
+    text-transform: none;
+    margin: 0px;
+    padding: 0px;
+    font-size: inherit;
+    font-style: normal;
+    margin-bottom: 6px;
+}
+
+#searchMode input, #licenseMode input, #formatMode input, #orientationMode input, #typeMode input, #colorMode input, #sizeMode input, #collectionMode input {
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+#search-filter-wrapper label {
+    margin: 0px;
+    font-weight: 300;
+}
+
+#swapWords_show {
+    display: inline;
+}
+
+#swapWords_hide {
+    display: none;
+}
+
+.showSearchFilters #swapWords_show {
+    display: none;
+}
+
+.showSearchFilters #swapWords_hide {
+    display: inline;
+}
+
+.search-filter-handle>a {
+    cursor: pointer;
+}
+
+#keywordsList a {
+    display: block;
+}
+
+#loadingIndicator {
+    width: 100%;
+    text-align: center;
+}
+
+.showSearchFilters>#loadingIndicator {
+    padding-left: 200px;
+}
+
+.removeFilter {
+    cursor: pointer;
+    color: #3096ff;
+}
+
+.removeFilter:hover {
+    text-decoration: underline;
+}
+
+svg.loading {
+    stroke: #555;
+    width: 3em;
+    height: 3em;
+    margin: 20px;
+}
+
+#sizeCustom {
+    width: 40px;
+    margin-left: 0px !important;
+    padding: 0 3px;
+}

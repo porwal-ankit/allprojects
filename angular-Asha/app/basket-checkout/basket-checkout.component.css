@@ -1,0 +1,221 @@
+
+.hide {
+    opacity: 0;
+    z-index:0;
+    padding:0px;
+    border: 0px none #d7d7d7;
+}
+.show {
+    display: table-cell;
+    opacity:1;
+    padding:10px;
+    border: 1px solid #d7d7d7;
+}
+.paymentMethodRec {
+    background-color: #f4f4f4;
+    border: 1px solid #cccccc;
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 30px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    min-width:340px;
+}
+.pageTitle {
+    font-size: 18px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: 600;
+    color: rgba(0,0,0,1);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 25px;
+    margin-top: 20px;
+}
+.paymentMethodRec input[type="radio"], img {
+    display: inline-block;
+    vertical-align: middle;
+}
+.paymentMethodRec input[type="radio"] {
+    margin: 20px 10px 20px 0px;
+}
+.paymentMethodRec input[type="radio"]:first-of-type {
+}
+#middle-section form {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0px 18px;
+}
+.paymentMethodRec label img {
+    vertical-align: middle;
+    height: 30px;
+}
+.paymentMethodRec input[type="text"] {
+    background-color: #ffffcc;
+    border: 1px solid rgba(0,0,0,.1);
+    font-family: inherit;
+    font-size: 12px;
+    padding: 6px;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    line-height: normal;
+}
+.paymentMethodRec .subtext {
+    color: rgba(153,153,153,1);
+    max-width: 250px;
+}
+.leftIndent {
+    margin-left: 2em;
+}
+.paymentMethodRec active {
+    height: auto;
+    opacity: 1;
+}
+.paymentMethodRec .inactive * {
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    padding-bottom:0;
+    padding-top:0;
+    margin-left:0;
+    margin-right:0;
+    border-width:0;
+    opacity:0;
+}
+.purchaseOrderInputWidth  {
+    width: 250px;
+}
+.continueButton {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    padding-top: 8px;
+    padding-right: 48px;
+    padding-bottom: 8px;
+    padding-left: 48px;
+    font-weight: 600;
+    cursor: pointer;
+    display: table;
+    font-size: 18px;
+    margin-top: 40px;
+    margin-bottom: 12px;
+    transition: background-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+    white-space: nowrap;
+    margin-right: auto;
+    margin-left: auto;
+    position:relative;
+}
+.continueButton:hover {
+    background-color: #3096ff;
+}
+.continueButton:active {
+    background-color: red;
+}
+.continueButton.disabled {
+    color: #aaa;
+    background-color: #888;
+}
+.continueButton.disabled:hover {
+    color: #aaa;
+    background-color: #888;
+}
+.continueButton.disabled:active {
+    color: #aaa;
+    background-color: #888;
+}
+.downloadButton {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+    padding-top: 8px;
+    padding-right: 48px;
+    padding-bottom: 8px;
+    padding-left: 48px;
+    font-weight: 600;
+    cursor: pointer;
+    display: table;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    transition: background-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+    white-space: nowrap;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+}
+.errorMsg {
+    color: rgba(255,0,0,1);
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.note {
+    margin-top: 40px;
+    text-align: left;
+    display: block;
+    width: 340px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 40px;
+}
+.noteSubtext {
+    color: rgba(153, 153, 153, 1);
+}
+#onaccount {
+    margin-top:-.5em
+}
+#note {
+    width: 340px;
+    margin: 6px 0px;
+    resize: vertical;
+    border-top-color: #ccc;
+    border-right-color: #ccc;
+    border-bottom-color: #ccc;
+    border-left-color: #ccc;
+    font-size: 13px;
+    font-family: "Lato", sans-serif;
+    min-height: 86px;
+}
+.note label {
+    font-size: 14px;
+}
+.animate * {
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
+}
+.total {
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 40px;
+}
+.total span{
+    font-size: .75em;
+    line-height: 0.5em;
+    vertical-align: baseline;
+    position: relative;
+    top: -0.2em;
+}
+.paymentMethodRec label {
+    font-size: 1.5em;
+}
+
+#paypal>p {
+    max-width:250px;
+    margin-bottom:0px;
+    margin-top:0px;
+}

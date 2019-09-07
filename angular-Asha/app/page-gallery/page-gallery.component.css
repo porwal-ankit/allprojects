@@ -1,0 +1,389 @@
+
+.headerWrapper div {
+    vertical-align: top;
+    display: inline-block;
+    position: relative;
+    height: 18px;
+    margin-top: 2px;
+}
+.headerWrapper div svg {
+    height: 100%;
+    margin-left: 6px;
+    fill: #666;
+}
+.headerWrapper div svg:hover {
+    fill: #007aff;
+    cursor: pointer;
+}
+.headerWrapper div svg:active {
+    fill: red;
+    cursor: pointer;
+}
+.actionMenu {
+    display: table-cell;
+}
+.galleryWrapper {
+    margin-left: 18px;
+    margin-right: 18px;
+}
+.galleryHandle {
+    margin-top: 20px;
+    display: inline-block;
+}
+.galleryHandle:hover * {
+    color: #007aff;
+    cursor: pointer;
+    fill: #007aff;
+}
+.galleryHandle:active * {
+    color: red;
+    cursor: pointer;
+    fill: red;
+}
+.galleryName {
+    font-size: 18px;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 5px;
+    padding-right: 6px;
+}
+.galleryActive .galleryRotator {
+    display: inline-block;
+    vertical-align: text-bottom;
+    height: 16px;
+    width: 16px;
+    fill: black;
+    /* [disabled]transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), fill 0.15s cubic-bezier(0.645, 0.045, 0.355, 1); */
+    transform: rotate(90deg);
+}
+.galleryInactive .galleryRotator {
+    display: inline-block;
+    vertical-align: text-bottom;
+    height: 16px;
+    width: 16px;
+    fill: black;
+    /* [disabled]transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), fill 0.15s cubic-bezier(0.645, 0.045, 0.355, 1); */
+    transform: rotate(0deg);
+}
+.galleryActive .thumbMatrixWrapper {
+    display: block;
+}
+.galleryInactive .thumbMatrixWrapper {
+    display: none;
+}
+.thumbMatrixWrapper {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+.gallery-form {
+    margin-top: 14px;
+    white-space: nowrap;
+    display: block;
+}
+.galleryComment {
+    font-style: italic;
+    display: table-cell;
+    padding-right: 24px;
+    padding-left: 6px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+}
+.galleryInfo {
+    display: table-cell;
+    color: rgba(0,0,0,1);
+    white-space: nowrap;
+    padding-left: 24px;
+}
+.galleryInfo div:first-of-type {
+    display: table-cell;
+    white-space: nowrap;
+}
+.gallery-form h1 {
+    color: rgba(204,51,0,1);
+}
+#GalleryActions {
+    margin-left: 9px;
+}
+.headerWrapper {
+    display: table;
+    width: 100%;
+    margin-top: 18px;
+}
+.headerWrapper>div {
+    display: table-cell;
+    padding-left: 18px;
+    padding-right: 18px;
+    white-space: nowrap;
+    width: 33%;
+}
+.headerWrapper div:nth-of-type(1) {
+    text-align: left;
+}
+.headerWrapper div:nth-of-type(2) {
+    width: 34%;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.headerWrapper div:nth-of-type(3) {
+    text-align: right;
+}
+.galleryInfo h1 {
+    font-size: inherit;
+    font-style: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-variant: normal;
+    display: inline-block;
+    margin-left: 12px;
+    color: rgba(153,153,153,1);
+}
+.galleryInfo h1:first-of-type {
+    margin-left: 0px;
+}
+/* gallery stuff */
+.animate * {
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    transition: 300ms;
+}
+.gallery-actions-panel {
+    margin-left: 18px;
+    display: table;
+    position: relative;
+}
+.gallery-actions-panel div {
+    vertical-align: top;
+}
+.gallery-actions-panel button {
+    font-size: 14px;
+    line-height: 1.25;
+    font-weight: 300;
+    letter-spacing: 0;
+    background-color: #0070c9;
+    background: -webkit-linear-gradient(#42a1ec, #0070c9);
+    background: linear-gradient(#42a1ec, #0070c9);
+    border-color: #07c;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    min-width: 30px;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 1px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: top;
+}
+.gallery-actions-panel button:hover {
+    background-image: linear-gradient(rgb(81, 169, 238), rgb(20, 123, 205));
+    border-bottom-color: rgb(20, 130, 208);
+    border-left-color: rgb(20, 130, 208);
+    border-right-color: rgb(20, 130, 208);
+    border-top-color: rgb(20, 130, 208);
+}
+.gallery-actions-panel button.cancel-button {
+    background: none;
+    background-color: white;
+    border-color: #ccc;
+    color: rgba(51,51,51,1);
+    padding-right: 20px;
+    padding-left: 20px;
+    margin-right: 16px;
+    /* [disabled]margin-left: 16px;
+*/
+}
+.gallery-actions-panel button.cancel-button:hover {
+    background: none;
+    background-color: white;
+    border-color: #ccc;
+}
+.cancel-pad {
+    margin-right: 50px !important;
+}
+.action-msg {
+    color: rgba(102,102,102,1);
+    margin-top: 8px;
+    font-size: 12px;
+}
+.error {
+    color: rgba(255,0,0,1);
+}
+.text-field {
+    line-height: 1.25em;
+    margin-right: 20px;
+    font-size: 14px;
+    vertical-align: top;
+}
+.text-area {
+    line-height: 1.25em;
+    margin-right: 20px;
+    font-size: 14px;
+    vertical-align: top;
+    border-color: rgba(204,204,204,1);
+    font-family: Lato, sans-serif;
+}
+.action-alert {
+    font-size: 14px;
+    line-height: 1.25px;
+    margin-right: 20px;
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    margin-top: 6px;
+}
+.active {
+    opacity: 1;
+    height: 134px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.inactive * {
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    padding: 0;
+    padding-bottom:0;
+    margin: 0;
+    padding: 0;
+    border-width: 0px;
+    opacity: 0;
+}
+div.inactive  {
+     height: 0px;
+}
+/* .gallery stuff */
+
+/* thumb stuff */
+.mainContainer {
+    display: block;
+    cursor: pointer;
+    background-size: 100% 100%; /* explicitly setting height to 100% is important. Otherwise "auto" is assummed */
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transition: background-size .5s;
+    transition-delay: .5s;
+    -webkit-backface-visibility: hidden;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+.thumbWrapperSelect .mainContainer {
+    cursor: move;
+}
+.thumbWrapper {
+    display: inline-table;
+    padding: 4px;
+    margin: 5px;
+}
+.thumbWrapperSelect {
+    padding: 1px;
+    border: 3px solid #007aff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    display: inline-table;
+    margin: 5px;
+}
+/* .thumb stuff */
+
+/* hover icon stuff */
+.mainContainer:hover {
+    background-size: 130% 130%;
+}
+
+.mainContainer>.hoverInfo {
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all .5s;
+    transition-timing-function: ease-in-out;
+    transition-delay: .5s;
+    -webkit-backface-visibility: hidden;
+}
+
+.mainContainer:hover>.hoverInfo {
+    opacity: 1;
+}
+
+.mainContainer>.hoverInfo>.hoverInfoIcons {
+    width: 20px;
+    position: absolute;
+    right: -25px;
+    top: 5px;
+    transition: all .5s;
+    transition-delay: .5s;
+    -webkit-backface-visibility: hidden;
+}
+
+.hiiDollar {
+    height: 18px;
+}
+
+.mainContainer:hover>.hoverInfo>.hoverInfoIcons {
+    right: 5px;
+}
+
+.mainContainer>.hoverInfo>.hoverInfoIcons svg {
+    width: 18px;
+    fill: #fff;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.mainContainer>.hoverInfo>.hoverInfoIcons svg:hover {
+    fill: #47aaff;
+}
+
+.mainContainer>.hoverInfo>.hoverInfoIcons svg:active {
+    fill: red;
+}
+
+.mainContainer>.hoverInfo>.hoverInfoCaption {
+    position: absolute;
+    left: 5px;
+    top: -20px;
+    transition: all .5s;
+    transition-delay: .5s;
+    -webkit-backface-visibility: hidden;
+    width: calc(100% - 35px);
+    height: calc(100% - 65px);
+    overflow: hidden;
+}
+.mainContainer:hover>.hoverInfo>.hoverInfoCaption {
+    top: 5px;
+}
+.mainContainer>.hoverInfo>.hoverInfoExtra {
+    position: absolute;
+    left: 5px;
+    bottom: -20px;
+    transition: all .5s;
+    transition-delay: .5s;
+    -webkit-backface-visibility: hidden;
+}
+.mainContainer:hover>.hoverInfo>.hoverInfoExtra {
+    bottom: 5px;
+}
+.mainContainer:hover>.hoverInfo>.hoverInfoIcons svg {
+    cursor: pointer;
+}
+.deleteFromGallery {
+    fill: red !important;
+}
+/* .hover icon stuff */
+
+

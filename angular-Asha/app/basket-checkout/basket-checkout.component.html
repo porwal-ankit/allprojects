@@ -1,0 +1,52 @@
+<ng-container [formGroup]="paymentForm" *ngIf="order">
+    <div class="pageTitle"> Checkout </div>
+    <div class="paymentMethodRec animate">
+
+        <ng-container *ngIf="isOptionAvailable('authorizenet')">
+        <label>
+            <input value="authorizenet" type="radio" formControlName="type">
+            <img src="/assets/icns/cards.svg" alt="Credit Card">
+        </label>
+        <br>
+        </ng-container>
+
+        <ng-container *ngIf="isOptionAvailable('paypal')">
+        <label>
+            <input value="paypal" type="radio" formControlName="type">
+            <img src="/assets/icns/paypal.svg" alt="PayPal">
+        </label>
+        <div id="paypal" [ngClass]="{'inactive': paymentForm.getRawValue().type != 'paypal', 'active': paymentForm.getRawValue().type == 'paypal'}">
+            <p class="leftIndent"> Weiter zur Zahlung bei PayPal. Danach können Sie Ihren Einkauf abschliessen. </p>
+        </div>
+        </ng-container>
+
+        <ng-container *ngIf="isOptionAvailable('invoice')">
+        <label>
+          <input value="invoice" type="radio" formControlName="type">
+          On Account
+        </label>
+        <div id="onaccount" [ngClass]="{'inactive': paymentForm.getRawValue().type != 'onaccount', 'active': paymentForm.getRawValue().type == 'onaccount'}">
+            <input class="purchaseOrderInputWidth leftIndent" formControlName="purchaseOrderNum" id="purchaseOrderNum" placeholder="Your purchase order number (required)" autofocus="autofocus" data-cip-id="purchaseOrderNum" type="text">
+            <p class="subtext leftIndent"> Eine Rechnung mit Ihren Einkaufsdetails wird an Ihre Email-Adresse gesendet.</p>
+        </div>
+        </ng-container>
+    </div>
+
+    <div class="total">Total Einkauf: &nbsp;&nbsp; <span>{{order?.currency | currencySymbol}}</span>{{order?.totalPrice | number:'.2-2'}}</div>
+    <div class="continueButton" (click)="continuePayment()" [class.disabled]="!paymentForm.getRawValue().type">Weiter</div>
+    <div class="errorMsg" *ngIf="errorMsg">{{errorMsg}}</div>
+
+    <div class="note">
+        <label for="note">Hinweis</label><br>
+        <textarea id="note" rows="5" placeholder="Optional" formControlName="note"></textarea><br>
+        <span class="noteSubtext">Dieser Kommentar wird in der Endrechnung vermerkt.</span>
+    </div>
+
+    <ng-container *ngIf="formData">
+        <form #paymentFormTag [action]="formData.actionUrl" [method]="formData.method">
+            <input *ngFor="let formField of formData.options" type="hidden" [name]="formField.name" [value]="formField.value">
+        </form>
+    </ng-container>
+
+
+</ng-container>

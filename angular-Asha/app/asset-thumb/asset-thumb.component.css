@@ -1,0 +1,118 @@
+:host {
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.mainContainer {
+    display: block;
+    cursor: pointer;
+    /*background-size: 100%; Let's try using "cover" to compensate for stubby thumbs */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transition: background-size 0.5s;
+    transition-delay: .5s;
+    -webkit-backface-visibility: hidden;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+
+.mainContainer:hover {
+    /*background-size: 130%; Let's see what killing the zoom on hover looks like */
+}
+
+.mainContainer>.hoverInfo {
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all .5s;
+    transition-timing-function: ease-in-out;
+    transition-delay: .5s;
+    -webkit-backface-visibility: hidden;
+}
+
+.mainContainer:hover>.hoverInfo {
+    opacity: 1;
+}
+
+.mainContainer>.hoverInfo>.hoverInfoIcons {
+    width: 20px;
+    position: absolute;
+    right: -25px;
+    top: 5px;
+    transition: all .5s;
+    transition-delay: .5s;
+    -webkit-backface-visibility: hidden;
+}
+
+.hiiDollar {
+    height: 18px;
+}
+
+.mainContainer:hover>.hoverInfo>.hoverInfoIcons {
+    right: 5px;
+}
+
+.mainContainer>.hoverInfo>.hoverInfoIcons svg {
+    width: 18px;
+    fill: #fff;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.mainContainer>.hoverInfo>.hoverInfoIcons svg:hover {
+    fill: #47aaff;
+}
+
+.mainContainer>.hoverInfo>.hoverInfoIcons svg:active {
+    fill: red;
+}
+
+.mainContainer>.hoverInfo>.hoverInfoCaption {
+    position: absolute;
+    left: 5px;
+    top: -20px;
+    transition: all .5s;
+    transition-delay: .5s;
+    -webkit-backface-visibility: hidden;
+    width: calc(100% - 35px);
+    /*height: calc(100% - 65px);*/
+    height: 7em;
+    overflow: hidden;
+}
+
+.mainContainer:hover>.hoverInfo>.hoverInfoCaption {
+    top: 5px;
+}
+
+
+.mainContainer>.hoverInfo>.hoverInfoExtra {
+    position: absolute;
+    left: 5px;
+    bottom: -20px;
+    transition: all .5s;
+    transition-delay: .5s;
+    -webkit-backface-visibility: hidden;
+}
+
+.mainContainer:hover>.hoverInfo>.hoverInfoExtra {
+    bottom: 5px;
+}
+
+.deleteFromGallery {
+    fill: red !important;
+}
+.deleteFromGallery:hover {
+    fill: #47aaff !important;
+}
+
+.inCart svg {
+    fill: #f00 !important;
+}

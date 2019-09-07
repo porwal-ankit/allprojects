@@ -1,0 +1,189 @@
+<div *ngIf="!asset">
+  laden...
+</div>
+
+
+<!--<div id="preview-object-wrapper" *ngIf="asset" (swipeleft)="goToNext($event)" (swiperight)="goToPrevious($event)">-->
+<div id="preview-object-wrapper" *ngIf="asset">
+
+  <div class="imgNavBox">
+    <div *ngIf="showPrevious" id="previmage"><img src="/assets/img/prev-image-arrow.svg" id="previmageClick" (click)="goToPrevious($event)"></div>
+    <div *ngIf="showNext" id="nextimage"><img src="/assets/img/next-image-arrow.svg" id="nextimageClick" (click)="goToNext($event)"></div>
+
+    <!-- Preview Image (auto scaling, served up by Pixelrights) -->
+    <div id="preview_image_div">
+      <div id="close" (click)="clickClose()"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+        <circle class="close-o" fill="#00AEEF" cx="128" cy="128" r="128"></circle>
+        <polygon class="close-x" points="205.4053,64.7378 191.2627,50.5952 128,113.8574 64.7378,50.5952 50.5952,64.7378 113.8574,128 50.5952,191.2627 64.7378,205.4053 128,142.1426 191.2627,205.4053 205.4053,191.2627 142.1426,128 "></polygon>
+      </svg> </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6"><img [src]="getImageSrc('preview')"></div>
+        <div class="col-sm-6">
+          <!-- Price -->
+    <app-asset-calculator [calculatorId]="asset.calculatorPackage" [asset]="asset" [article]="article" (close)="clickClose()"></app-asset-calculator>
+    <!-- .Price -->
+
+        </div>
+    </div>
+</div>
+
+      
+      
+    </div>
+    <!-- .Preview Image Div -->
+  </div>
+
+  <!-- Preview Data -->
+  <table id="preview-data-table">
+    <tbody><tr>
+      <td> {{asset.license | uppercase}} Image ID</td>
+      <td width="100%"> {{asset.name | removeFileExtension}} </td>
+      <td rowspan="2" id="actions">
+
+        <!-- Add to cart -->
+        <div class="logo" title="
+in den Warenkorb legen" (click)="addToCart()" [ngClass]="{'inCart': isInCart()}"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+          <path d="M224.8262,160.4219l30.2109-90.9478c1.6699-5.0527,0.8301-7.5791,0-9.2627 c-3.3594-4.2109-10.0703-4.2109-10.9102-4.2109H72.1504L67.9551,34.106C67.1152,29.0527,62.9199,24,56.2109,24H7.5508 C2.5156,24,0,26.5264,0,30.7368v12.6318c0,5.0527,2.5156,5.8945,7.5508,5.8945h41.1045l31.0459,132.2114 c-5.0352,5.8945-7.5508,13.4727-7.5508,20.2109c0,16,12.5801,30.3145,28.5205,30.3145c14.2607,0,26.0107-14.3145,27.6846-22.7363 h60.4004C191.2773,217.6855,199.666,232,217.2773,232c15.9395,0,28.5293-13.4727,28.5293-28.6309 c0-16-10.0703-29.4746-28.5293-29.4746c-7.5508,0-16.7812,4.2109-20.9707,10.1055h-74.6602 c-5.875-8.4199-12.5859-10.9473-20.1357-10.9473l-0.8398-5.8945h113.2568C222.3164,167.1582,223.9863,163.7891,224.8262,160.4219z M217.2773,192.4219c5.8789,0,10.9102,4.2109,10.9102,10.1055s-5.0312,10.9473-10.9102,10.9473 c-5.8711,0-10.9004-5.0527-10.9004-10.9473S211.4062,192.4219,217.2773,192.4219z M110.7402,202.5273 c0,5.8945-5.0342,10.9473-10.9102,10.9473c-5.8691,0-10.0645-5.0527-10.0645-10.9473s4.1953-10.9473,10.0645-10.9473 C105.7061,191.5801,110.7402,196.6328,110.7402,202.5273z"></path>
+        </svg></div>
+        <!-- .Add to cart -->
+
+        <!-- Download comping image -->
+        <div class="logo" title="Download Comp" (click)="downloadPreview()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 199.5088 256">
+          <path d="M188.0186,145.5654c-6.3467,0-11.4893,5.1406-11.4893,11.4893v50.457H22.9795v-50.457
+		c0-6.3486-5.1387-11.4893-11.4893-11.4893C5.1436,145.5654,0,150.7061,0,157.0547v61.9473c0,6.3457,5.1436,11.4902,11.4902,11.4902
+		h176.5283c6.3467,0,11.4902-5.1445,11.4902-11.4902v-61.9473C199.5088,150.7061,194.3652,145.5654,188.0186,145.5654z"></path>
+          <path d="M91.6279,171.4824c2.1562,2.1543,5.0781,3.3662,8.126,3.3662c3.0469,0,5.9678-1.2051,8.1221-3.3662l46.332-46.334
+		c4.4893-4.4844,4.4893-11.7598,0-16.2461c-4.4824-4.4883-11.7627-4.4883-16.2471,0l-26.7188,26.7188V36.9985
+		c0-6.3477-5.1426-11.4902-11.4883-11.4902c-6.3467,0-11.4893,5.1426-11.4893,11.4902v98.6206l-26.7129-26.7148
+		c-4.4883-4.4883-11.7656-4.4863-16.25-0.002c-4.4834,4.4883-4.4834,11.7637-0.002,16.248L91.6279,171.4824z"></path>
+        </svg></div>
+        <!-- .Download comping image -->
+
+        <!-- Add to Gallery -->
+        <div *ngIf="!isInLightbox()" class="logo" title="zur Projektbox hinzufügen" (click)="addToLightbox()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208.251 256">
+          <path d="M115.251,24v93h93V24H115.251z M186.251,95h-49V46h49V95z"></path>
+          <path d="M115.251,232h93v-93h-93V232z M137.251,161h49v49h-49V161z"></path>
+          <path d="M0.0005,232h93v-93h-93V232z M22.0005,161h49v49h-49V161z"></path>
+          <polygon points="57.5,24 35.5,24 35.5,59.5 0,59.5 0,81.5 35.5,81.5 35.5,117.0005 57.5,117.0005 57.5,81.5
+		93.0005,81.5 93.0005,59.5 57.5,59.5"></polygon>
+        </svg></div>
+
+        <div *ngIf="isInLightbox()" class="logo" title="zur Projektbox hinzufügen" (click)="deleteFromLightbox()"><svg class="deleteFromGallery" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 208 256">
+            <path d="M115,24v93h93V24H115z M186,95h-49V46h49V95z"></path>
+            <path d="M115,232h93v-93h-93V232z M137,161h49v49h-49V161z"></path>
+            <path d="M0,232h93v-93H0V232z M22,161h49v49H22V161z"></path>
+            <rect y="59" width="93" height="22"></rect>
+          </svg></div>
+        <!-- .Add to Gallery -->
+
+        <!-- Share menu -->
+        <div class="logo menuicon" title="Share…" id="shareButtonDiv"><svg *ngIf="!isMac()" (click)="toggleShareMenu()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 188.238 256"><path d="M156.848,171.098c-7.939,0-15.049,3.115-20.463,8.027l-74.576-43.376c0.539-2.403,0.954-4.825,0.954-7.324 c0-2.501-0.423-4.913-0.954-7.325l73.732-42.969c5.625,5.207,13.062,8.462,21.307,8.462c17.385,0,31.391-13.981,31.391-31.364 c0-17.348-14.016-31.363-31.391-31.363c-17.348,0-31.363,14.016-31.363,31.355c0,2.533,0.426,4.912,0.955,7.324l-73.734,43.002 c-5.634-5.232-13.061-8.479-21.314-8.479C14.007,97.068,0,111.076,0,128.425c0,17.348,14.007,31.363,31.391,31.363 c8.244,0,15.681-3.254,21.307-8.46l74.443,43.471c-0.512,2.212-0.832,4.521-0.832,6.819c0,16.838,13.721,30.532,30.529,30.532 c16.83,0,30.559-13.686,30.559-30.532C187.396,184.774,173.676,171.098,156.848,171.098z"/></svg><svg (click)="toggleShareMenu()" *ngIf="isMac()" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 152.885 256"><path d="M51.067,74.78l16.375-16.375v97.288h18V58.406l16.373,16.374c1.758,1.758,4.061,2.636,6.364,2.636 c2.303,0,4.606-0.879,6.364-2.636c3.515-3.515,3.515-9.213,0-12.728L76.442,23.95L38.339,62.052 c-3.515,3.515-3.515,9.213,0,12.728C41.854,78.295,47.553,78.295,51.067,74.78z M108.18,87.186c-4.971,0-9,4.029-9,9s4.029,9,9,9 h26.705v108.951H18V105.186h26.703c4.971,0,9-4.029,9-9s-4.029-9-9-9H0v144.951h152.885V87.186H108.18z"/></svg>
+
+          <div id="sharemenu" [class.show]="showShareMenu" [class.hide]="!showShareMenu"><img class="menu-pointer" src="/assets/img/share-menu-pointer.png">
+
+            <!-- Copy URL to Clipboard -->
+            <button title="Copy Link" (click)="afterCopy()" ngxClipboard [cbContent]="getAssetUrl()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="32 47.504 431.998 431.994"><path d="M269.172,375.502c-21.641,0-42.836-5.518-61.75-15.643l-40.242,40.518c-7.555,7.594-17.602,11.789-28.297,11.789 c-10.695,0-20.758-4.18-28.297-11.797c-15.617-15.711-15.617-41.289,0-57.01l88.164-88.771 c7.563-7.633,17.609-11.828,28.297-11.828c7.64,0,14.742,2.5,21.273,6.148c7.634,4.281,23.931,12.758,39.125,1.758l8.095-8.156 c15.311-19.977,6.383-36.758,0.078-42.016c-42.149-35.273-104.672-33.297-144.141,6.469l-88.164,88.781 c-41.75,42.029-41.75,110.203,0,152.242c41.734,42.016,109.398,42.016,151.148,0l73.43-73.971 c-6.156,0.883-12.375,1.484-18.709,1.486C269.182,375.502,269.182,375.502,269.172,375.502z M432.703,79.016 C390.977,37,323.344,37,281.609,79.016l-73.398,73.969c6.148-0.883,12.367-1.484,18.695-1.484 c21.641,0,42.844,5.508,61.758,15.625l40.211-40.5c7.547-7.594,17.594-11.789,28.281-11.789c10.693,0,20.75,4.18,28.289,11.797 c15.607,15.711,15.607,41.289,0,57.008l-88.133,88.773c-7.557,7.633-17.596,11.828-28.289,11.828 c-7.625,0-14.734-2.5-21.258-6.147c-7.703-4.32-24.281-13.039-39.633-1.453c-0.078,0.063-0.141,0.133-0.219,0.194 c-1.766,1.358-3.305,3.022-4.836,4.703c-0.5,0.556-1.031,0.892-1.523,1.492c-16.914,20.616-7.516,38.086-1.063,43.477 c42.133,35.273,104.625,33.298,144.078-6.469l88.133-88.781C474.43,189.227,474.43,121.055,432.703,79.016z"></path></svg></button>
+            <!-- .Copy URL to Clipboard -->
+
+            <!-- Facebook -->
+            <button title="Share on Facebook" (click)="toggleShareMenu(false)" shareButton="facebook" [sbUrl]="getAssetUrl()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="24 20 208 208"><path d="M220.521,20H35.479C29.138,20,24,25.14,24,31.479v185.042C24,222.859,29.138,228,35.479,228h185.042 c6.338,0,11.479-5.141,11.479-11.479V31.479C232,25.14,226.859,20,220.521,20z M200.316,81.059l-16.535,0.008 c-12.965,0-15.473,6.146-15.473,15.165v19.89h30.918l-4.025,31.149h-26.893v79.934h-32.248v-79.934h-26.961v-31.149h26.961V93.148 c0-26.661,16.321-41.178,40.162-41.178c11.42,0,21.232,0.848,24.094,1.227V81.059z"></path></svg></button>
+            <!-- .Facebook -->
+
+            <!-- Twitter -->
+            <button title="Share on Twitter" (click)="toggleShareMenu(false)" shareButton="twitter" [sbUrl]="getAssetUrl()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0.224 24.411 255.941 208"><path d="M256.165,49.034c-9.416,4.176-19.536,7-30.158,8.269c10.841-6.499,19.169-16.79,23.089-29.051 c-10.145,6.018-21.384,10.388-33.346,12.742c-9.579-10.206-23.226-16.583-38.326-16.583c-29.001,0-52.513,23.51-52.513,52.509 c0,4.116,0.466,8.123,1.361,11.966C82.631,86.697,43.939,65.792,18.042,34.023c-4.52,7.756-7.11,16.775-7.11,26.397 c0,18.218,9.272,34.29,23.36,43.708c-8.608-0.273-16.703-2.635-23.784-6.568c-0.003,0.218-0.003,0.438-0.003,0.66 c0,25.441,18.1,46.665,42.121,51.488c-4.406,1.201-9.046,1.84-13.835,1.84c-3.383,0-6.671-0.327-9.877-0.941 c6.681,20.863,26.074,36.046,49.051,36.47c-17.972,14.083-40.613,22.475-65.214,22.475c-4.239,0-8.418-0.246-12.525-0.73 c23.237,14.897,50.839,23.591,80.491,23.591c96.586,0,149.403-80.013,149.403-149.402c0-2.277-0.054-4.541-0.152-6.793 C240.223,68.812,249.126,59.563,256.165,49.034"></path></svg></button>
+            <!-- .Twitter -->
+
+            <!-- Pinterest -->
+            <button title="Share on Pinterest" (click)="toggleShareMenu(false)" shareButton="pinterest" [sbUrl]="getAssetUrl()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="13.481 13 228 228"><path d="M127.474,13C64.52,13,13.481,64.038,13.481,127c0,48.301,30.046,89.539,72.455,106.155 c-0.999-9.018-1.891-22.858,0.396-32.701c2.073-8.895,13.37-56.666,13.37-56.666s-3.415-6.838-3.415-16.92 c0-15.851,9.191-27.685,20.624-27.685c9.736,0,14.428,7.296,14.428,16.054c0,9.781-6.218,24.408-9.447,37.957 c-2.676,11.347,5.706,20.604,16.886,20.604c20.266,0,35.839-21.372,35.839-52.206c0-27.297-19.611-46.376-47.614-46.376 c-32.44,0-51.483,24.323-51.483,49.468c0,9.806,3.777,20.311,8.485,26.017c0.934,1.123,1.074,2.123,0.793,3.278 c-0.863,3.593-2.791,11.346-3.167,12.915c-0.491,2.09-1.651,2.526-3.811,1.536c-14.237-6.639-23.143-27.448-23.143-44.171 c0-35.963,26.127-68.987,75.325-68.987c39.554,0,70.281,28.181,70.281,65.844c0,39.287-24.774,70.906-59.158,70.906 c-11.545,0-22.413-6.003-26.12-13.089c0,0-5.727,21.769-7.11,27.096c-2.573,9.9-9.513,22.32-14.166,29.884 c10.665,3.305,22.002,5.088,33.746,5.088c62.976,0,114.008-51.041,114.008-114C241.481,64.038,190.449,13,127.474,13z"></path></svg></button>
+            <!-- .Pinterest -->
+
+          </div>
+
+        </div>
+        <!-- .Share menu -->
+
+        <!-- Question -->
+        <div class="logo menuicon" title="Question…" (click)="toggleSupportMenu()" id="supportButtonDiv"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 316.873 256">
+          <path d="M106.333,21.667C47.7007,21.667,0,69.3677,0,128s47.7007,106.333,106.333,106.333 c58.6318,0,106.333-47.7007,106.333-106.333S164.9648,21.667,106.333,21.667z M106.333,212.333C59.8315,212.333,22,174.5015,22,128 s37.8315-84.333,84.333-84.333c46.501,0,84.333,37.8315,84.333,84.333S152.834,212.333,106.333,212.333z"></path>
+          <path d="M103.2803,158.2559c-3.2002,0-6.1611,1.3203-8.8813,3.9609c-2.7207,2.6406-4.0811,5.8809-4.0811,9.7217 c0,3.7344,1.3203,6.9351,3.9609,9.6021c2.6406,2.6665,5.8271,4.0005,9.5615,4.0005c3.6812,0,6.8677-1.334,9.562-4.0005 c2.6934-2.667,4.041-5.894,4.041-9.6821c0-3.7329-1.334-6.9336-4.001-9.6016 C110.7744,159.5898,107.3877,158.2559,103.2803,158.2559z"></path>
+          <path d="M132.7266,78.3936c-7.042-5.3823-15.3906-8.0742-25.0454-8.0742c-7.6289,0-17.0166,2.1343-28.165,6.4014v22.7129 c8.7476-5.8062,16.9092-8.7104,24.4844-8.7104c3.4131,0,6.5073,0.8789,9.2817,2.6367c2.7725,1.7578,4.1611,4.1558,4.1611,7.1914 c0,1.9717-0.6543,3.9033-1.9609,5.7935c-1.3076,1.8916-4.041,4.835-8.2012,8.8296c-5.7612,5.4868-9.6021,10.1479-11.522,13.9834 c-1.9204,3.8359-2.8809,9.1631-2.8809,15.9819v4.4746h21.8442v-1.918c0-4.3696,1-8.1128,3-11.2305 c2.001-3.1182,5.6143-7.0752,10.8428-11.8711c5.3877-4.8486,9.1885-8.9917,11.4014-12.4302 c2.2129-3.4365,3.3213-7.6064,3.3213-12.5098C143.2881,90.8633,139.7676,83.7759,132.7266,78.3936z"></path>
+          <polygon points="242.6328,232.1504 295.3008,183.9766 242.6328,136.3379"></polygon>
+        </svg>
+
+
+          <div id="supportmenu" [class.show]="showSupportMenu" [class.hide]="!showSupportMenu"><img class="menu-pointer" src="/assets/img/share-menu-pointer.png">
+
+            <a (click)="toggleSupportMenu(false); sendMail('research%sodatech.com?subject=Research%20request&amp;body=Need%20help%20finding%20an%20image%3F%20We%E2%80%99re%20happy%20to%20assist.%20Just%20tell%20us%20what%20you%E2%80%99re%20looking%20for%20and%20include%20any%20sample%20images%20you%20want%20us%20to%20reference.')">Brauchen Sie Unterstützung bei der Suche nach dem richtigen Bild?</a>
+            <a (click)="showRfVersusRm()">RF versus RM</a>
+
+          </div>
+        </div>
+        <!-- .Question -->
+      </td>
+    </tr>
+    <tr>
+      <td> Fotograf </td>
+      <td colspan="2">
+        <ng-container *ngIf="!asset.collection">
+          <a class="link" title="See more from this photographer" (click)="searchPhotographer(asset.supplier.id)">{{asset?.supplier?.copyright}}</a>
+        </ng-container>
+        <ng-container *ngIf="asset.collection">
+          <ng-container *ngIf="asset.copyright">
+            <a class="link" title="See more from this photographer" (click)="searchCopyright(asset.copyright)">{{asset?.copyright}}</a>
+            /
+          </ng-container>
+          <a class="link" title="See more from this collection" (click)="searchCollection(asset.collection.id)">{{asset?.collection?.name}}</a>
+        </ng-container>
+      </td>
+    </tr>
+    <tr>
+      <td> Beschreibung </td>
+      <td colspan="2"> {{asset.caption}} </td>
+    </tr>
+
+    <tr>
+      <td>Dateigrösse</td>
+      <td colspan="2" id="sizeCell">{{calculateRawFileSize()}}<span>|</span>{{asset?.width}} x {{asset?.height}} px<span>|</span>{{calculateMegapixel()}}<span>|</span>{{calculatePrintSize()}}</td>
+    </tr>
+
+    <tr *ngIf="getOptionalSize()">
+      <td>Grösste verfügbare Datei</td>
+      <td colspan="2" id="sizeCell">
+          {{getOptionalSize() | number:'1.1-1'}} MB<span>|</span>{{getOptionalDimensions()}} px<span>|</span>{{getOptionalMegapixel()}}<span>|</span>{{getOptionalPrintSize()}}<span>|</span>Available upon <a style="color:inherit; text-decoration:underline;" (click)="requestOptionalFilesize()">request</a> for an additional fee.
+      </td>
+    </tr>
+
+    <tr *ngIf="isModelReleaseAvailable() || isPropertyReleaseAvailable()">
+      <td> Releases </td>
+      <td colspan="2" >
+        <ng-container *ngIf="isModelReleaseAvailable()">Model Release vorhanden. </ng-container>
+        <ng-container *ngIf="isPropertyReleaseAvailable()">Property Release vorhanden. </ng-container>
+      </td>
+    </tr>
+
+    <tr><td> Keywords </td>
+      <td colspan="2" id="keywords" [class.showAllKeywords]="showAllKeywords">
+        <span *ngFor="let keyword of asset.keywords; let first=first;">{{ !first ? ', ':'' }}<a (click)="searchKeyword(keyword)">{{keyword}}</a></span>
+
+          &nbsp;&nbsp;(<a class="showMoreKeywords" *ngIf="asset.keywords.length>10" (click)="showAllKeywords=!showAllKeywords">{{showAllKeywords ? 'Show fewer keywords' : 'Show more keywords'}}</a>) <!--Move the link to inside the parentheses.-->
+
+      </td>
+    </tr>
+    </tbody></table>
+  <!-- .Preview Data -->
+
+    
+
+  <!-- Similars -->
+  <div id="similars" *ngIf="similarAssets && similarAssets.length">
+        <div class="div-label"> Ähnliche Bilder </div>
+        <div id="similar-thumbs">
+          <!-- <a href="javascript:void(0)"> <img src="../resources/img/similars/thumb-1.jpg" title="Get Info for PAN145272" border="0"> </a> -->
+          <app-asset-thumb *ngFor="let asset of similarAssets" [asset]="asset" height="100px" width="auto" marginWidth="10px" (detail)="showSimilarAssetDetail($event)"></app-asset-thumb>
+        </div>
+  </div>
+  <!-- .Similars -->
+
+</div>

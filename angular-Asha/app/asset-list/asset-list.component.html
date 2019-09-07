@@ -1,0 +1,14 @@
+<ng-container *ngIf="sortable">
+  <div #mainContainer class="mainContainer" [dragula]="dragulaId" [dragulaOptions]="dragulaOptions">
+    <ng-container *ngIf="assets.length">
+      <ng-container *ngFor="let asset of assets; let isFirst=first; let isLast=last;"><app-asset-thumb [attr.data-assetId]="asset.id" [asset]="asset" [width]="asset.displayWidth" [height]="asset.displayHeight" [marginWidth]="asset.marginWidth" (detail)="showAssetDetail($event)" [lightboxId]="lightboxId"></app-asset-thumb><app-asset-detail #assetDetailContainer *ngIf="showDetailId > 0 && asset.id == showDetailId" [assetId]="showDetailId" [asset]="showDetailAsset" (close)="closeAssetDetail($event)" [showPrevious]="!isFirst" [showNext]="!isLast" (previous)="previousAsset($event)" (next)="nextAsset($event)" [lightboxId]="lightboxId"></app-asset-detail></ng-container>
+    </ng-container>
+  </div>
+</ng-container>
+<ng-container *ngIf="!sortable">
+  <div #mainContainer class="mainContainer">
+    <ng-container *ngIf="assets.length">
+      <ng-container *ngFor="let asset of assets; let isFirst=first; let isLast=last;"><app-asset-thumb [attr.data-assetId]="asset.id" [asset]="asset" [width]="asset.displayWidth" [height]="asset.displayHeight" [marginWidth]="asset.marginWidth" (detail)="showAssetDetail($event)" [lightboxId]="lightboxId"></app-asset-thumb><app-asset-detail #assetDetailContainer *ngIf="showDetailId > 0 && asset.id == showDetailId" [assetId]="showDetailId" [asset]="showDetailAsset" (close)="closeAssetDetail($event)" [showPrevious]="!isFirst" [showNext]="!isLast" (previous)="previousAsset($event)" (next)="nextAsset($event)" [lightboxId]="lightboxId"></app-asset-detail></ng-container>
+    </ng-container>
+  </div>
+</ng-container>

@@ -1,0 +1,57 @@
+:host {
+ display: block;
+ box-sizing: border-box;
+ margin:30px;
+}
+h1 {
+	font-size: 52px;
+	font-weight: 400;
+	text-align: center;
+	font-family: Merriweather;
+	margin-bottom:50px;
+	margin-top:0px;
+}
+h2 {
+	font-size: 16px;
+	font-weight: 600;
+	text-transform:uppercase;
+	margin-top:2em;
+}
+h3 {
+	font-size: 14px;
+	font-weight: 600;
+}
+li {
+	margin: 10px 0px;
+}
+ol {	
+	padding-left:2em;
+}
+ol > li > ol * {
+	list-style: none;
+}
+ol > li > ol {
+	counter-reset: list1;
+}
+ol > li > ol > li::before {
+	counter-increment: list1;
+	content: "(" counter(list1, lower-alpha) ") ";
+}
+ol > li > ol > li > ol {
+	counter-reset: list2;
+}
+ol > li > ol > li > ol > li::before {
+	counter-increment: list2;
+	content: "(" counter(list2, lower-roman) ") ";
+}
+li > p {
+	margin: 10px 0px;
+}
+.wrapper ol * {
+	text-align: justify;
+}
+.wrapper {
+	display: table;
+	 max-width: 900px;
+	margin: 0px auto;
+}

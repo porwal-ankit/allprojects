@@ -1,0 +1,46 @@
+<div id="bkg_fog"></div>
+
+<div id="login_form" style="display: block;" [formGroup]="form" (keyup.enter)="doLogin()">
+  <div id="login_close" (click)="cancelLogin()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+    <circle class="close-o" fill="#00AEEF" cx="128" cy="128" r="128"></circle>
+    <polygon class="close-x" points="205.4053,64.7378 191.2627,50.5952 128,113.8574 64.7378,50.5952 50.5952,64.7378 113.8574,128 50.5952,191.2627 64.7378,205.4053 128,142.1426 191.2627,205.4053 205.4053,191.2627 142.1426,128 "></polygon>
+  </svg>
+  </div>
+  <div id="login_content">
+    <div>
+      <h1>
+        LogIn
+      </h1>
+      <div *ngIf="loginSuccessMessage" class="alert alert-success">
+        {{loginSuccessMessage}}
+      </div>
+      <div *ngIf="formErrors.length" class="alert alert-danger">
+        <div *ngFor="let error of formErrors">
+          {{ error }}
+          <ng-container *ngIf="error == 'Email Not Verified'">
+            - <a (click)="resendVerificationEmail()">Erneutes versenden der Verifizierungs-Email</a>
+          </ng-container>
+        </div>
+      </div>
+      <div id="login_fields">
+        <div>
+          <label for="username">Email</label>
+          <input type="text" id="username" formControlName="username" #username>
+        </div>
+
+        <div>
+          <label for="password">Passwort</label>
+          <input type="password" id="password" formControlName="password">
+        </div>
+
+        <div>
+          <input type="button" (click)="doLogin()" value="Sign In">
+        </div>
+      </div>
+      <p>
+        <a [routerLink]="['', {outlets: {modal: null, primary: 'account/reset'}}]">Passwort vergessen?</a> |
+        <a [routerLink]="['', {outlets: {modal: null, primary: 'register'}}]">Registrieren</a>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+
+<div class="outer-overlay">
+    <div class="overlay">
+      <app-asset-detail [assetId]="assetId" [asset]="asset" [article]="article" (close)="closeDetail()"></app-asset-detail>
+    </div>
+
+    <div class="overlay-background" (click)="closeDetail()"></div>
+</div>
+

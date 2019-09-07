@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Configuration</title>
+  <link rel="stylesheet" type="text/css" href="http://demo.fashionfitr.com/assets/css/main.css">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+  <h2 style="text-align: center;">Configureable parameters:</h2>
+  <form name="parameterForm" id="parameterForm">
+    <div class="row">
+      <div class="col">
+          <div class="form-group">
+            <label for="shopId">ShopID:</label>
+            <input type="text" class="form-control" name="shopid" id="shopid" aria-describedby="shopIdHelp" placeholder="Enter ShopID here" value="9999999">
+          </div>
+          <div class="form-group">
+            <label for="shopId">Module:</label>
+            <input type="text" class="form-control" name="module" id="module" placeholder="Enter module here" value="T-Shirts%20%26%20Polo%26%2339%3Bs">
+          </div>
+          <div class="form-group">
+            <label for="shopId">Gender:</label>
+            <input type="text" class="form-control" name="gender" id="gender" placeholder="Enter Gender M/W" value="M">
+          </div>
+          <div class="form-group">
+            <label for="shopId">Brand:</label>
+            <input type="text" class="form-control" id="brand" name="brand" placeholder="Enter Brand here" value="BUGATTI">
+          </div>
+          <div class="form-group">
+            <label for="shopId">Labels:</label>
+            <input type="text" class="form-control" id="label" name="label" placeholder="Enter labels here" value="label">
+          </div>
+      </div>
+      <div class="col">
+          <div class="form-group">
+            <label for="shopId">Language:</label>
+            <input type="text" class="form-control" id="language" name="language" placeholder="Enter language here" value="en-EN">
+          </div>
+          <div class="form-group">
+            <label for="shopId">Add to cart:</label>
+            <select class="form-control" id="addToCart" name="addToCart">
+              <option value="true">True (AddToCart button)</option>
+              <option value="false">False (Close button)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="shopId">Productname:</label>
+            <input type="text" class="form-control" id="prodname" name="prodname" placeholder="Enter productname here" value="Bugatti%20Polo%2075073">
+          </div>
+          <div class="form-group">
+            <label for="shopId">Measurement:</label>
+            <input type="text" class="form-control" id="measurement" aria-describedby="measurementHelp" placeholder="Enter measurement here" name="measurement" value="m">
+            <small id="measurementHelp" class="form-text text-muted">Enter the measurement (For example: "M")</small>
+          </div>
+          <a id="submit" class="btn btn-primary" style="margin-top: 9px; cursor: pointer;">Submit</a>
+     </div>
+    </div>
+    <div id="mRespDiv"></div>
+  </form>
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#submit").click(function(){
+        $.ajax({
+        type:'post',
+        url:'api_ajax.php',
+        data:$('#parameterForm').serialize(),
+        success:function(respData){
+          if(respData=="SUCCESS")
+          {
+            $('#mRespDiv').html('<div class="alert alert-success">Details Successfully Saved!</div>'); 
+          }
+          else
+          {
+            $('#mRespDiv').html('<div class="alert alert-danger">Something went wrong!</div>');
+          }
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

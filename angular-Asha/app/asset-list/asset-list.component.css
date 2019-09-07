@@ -1,0 +1,19 @@
+:host, .mainContainer {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+	line-height:0px;
+}
+
+.mainContainer * {
+	line-height:1.42857143;
+}
+
+app-asset-detail {
+    float: left;
+    width: 100%;
+}
+
+app-asset-thumb {
+    margin: 5px 5px;
+}

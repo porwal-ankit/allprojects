@@ -1,0 +1,97 @@
+<div class="headerWrapper">
+  <div> </div>
+  <div>
+    <div *ngIf="paymentOrder" class="paymentProcessWarning">
+      Ihre Bestellung wird zur Zahlung vorbereitet.<br>
+      Bitte klicken Sie <a (click)="cancelPaymentProcess()">hier,</a> wenn Sie den Kaufprozess abbrechen und die Bilder zurück in den Warenkorb legen wollen.
+    </div>
+  </div>
+  <div [formGroup]="sortForm">
+    Auswahl:
+    <select formControlName="sort">
+      <option value="dateAdded">Sortieren nach Datum des Warenkorbes</option>
+    </select>
+    <div title="Reverse Sort Direction" (click)="switchReverseSort()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1305.382 1450.792">
+      <path d="M1301.502,985.043l-350.559,458.445c-3.513,4.613-8.984,7.303-14.771,7.303c-5.745,0-11.219-2.73-14.731-7.303 l-350.57-458.445c-2.595-3.369-3.887-7.383-3.887-11.395c0-3.891,1.177-7.902,3.69-11.273c5.059-6.68,13.826-9.188,21.617-6.117 l231.902,92.175V71.303c0-10.34,8.769-18.388,19.025-18.388h186.024c10.255,0,18.95,8.048,18.95,18.388v977.13l231.939-92.175 c7.782-3.07,16.482-0.562,21.511,6.117C1306.671,969.116,1306.63,978.344,1301.502,985.043z M734.614,488.405 c2.513-3.371,3.751-7.352,3.751-11.273c0-3.993-1.297-8.036-3.872-11.405L383.925,7.292C380.403,2.689,374.927,0,369.189,0 c-5.787,0-11.233,2.709-14.774,7.292L3.866,465.728c-5.128,6.68-5.147,15.917-0.1,22.678c5.018,6.68,13.699,9.188,21.481,6.117 l231.946-92.185v977.141c0,10.33,8.688,18.437,18.965,18.437h186.042c10.257,0,18.992-8.106,18.992-18.437V402.337l231.922,92.185 C720.877,497.593,729.544,495.085,734.614,488.405z"></path>
+    </svg></div>
+  </div>
+</div>
+
+<ng-container *ngIf="cart && cart['articles'] && cart.articles.length > 0" [formGroup]="articleForm">
+  <div class="basketTable">
+    <div class="basketEntry" *ngFor="let article of cart.articles">
+      <div class="basketImg">
+        <div class="basketImgPic">
+          <img [src]="getThumbnailUrl(article)">
+        </div>
+        <div class="basketImgCtrl">
+          <a (click)="removeArticle(article)">Entfernen</a>
+          <span class="separator">|</span>
+          <a (click)="modifyArticle(article)">Ändern</a>
+          <span class="separator">|</span>
+          <a (click)="duplicateArticle(article)">Duplizieren</a>
+        </div>
+      </div>
+      <div class="basketData">
+        <div>
+          <div class="title">Bild ID</div>
+          <div class="data"><a (click)="modifyArticle(article)">{{article?.asset?.name | removeFileExtension}}</a></div>
+        </div>
+        <div>
+          <div class="title">Lizenz Typ</div>
+          <div class="data">{{article?.asset?.license | uppercase}} <span class="separator">|</span> <a (click)="showTerms()">Lizenzbestimmungen</a></div>
+        </div>
+        <div>
+          <div class="title">Medien Art</div>
+          <div class="data">Bild</div>
+        </div>
+        <div *ngIf="isModelReleaseAvailable(article) || isPropertyReleaseAvailable(article)">
+          <div class="title">Freigaben</div>
+          <div class="data">
+            <ng-container *ngIf="isModelReleaseAvailable(article)">Model Release vorhanden. </ng-container>
+            <ng-container *ngIf="isPropertyReleaseAvailable(article)">Property Release vorhanden. </ng-container>
+          </div>
+        </div>
+        <div>
+          <div class="title">Dateigrösse</div>
+          <div class="data">
+            {{calculateRawFileSize(article)}} <span class="separator">|</span> {{calculateSize(article).width}} x {{calculateSize(article).height}} px <span class="separator">|</span> {{calculateMegapixel(article)}} <span class="separator">|</span> {{calculatePrintSize(article)}}
+          </div>
+        </div>
+        <div *ngIf="(article.info && article.info != '0') || isArticleRestricted(article)">
+          <div class="title">Lizenz</div>
+          <div class="data license"><span *ngIf="article.info && article.info != '0'">{{article.info}}</span>
+            <div *ngIf="isArticleRestricted(article)" class="need-to-call-us">Bitte kontaktieren Sie uns unter (xxx) xxx oder per Email <a href="mailto:sales@panoramicimages.com" style="color:inherit; text-decoration:underline;" >xxx@imagepoint.biz</a> für ein Angebot.</div>
+          </div>
+        </div>
+      </div>
+      <div class="basketPrice" [class.notSelected]="!articleForm.getRawValue()['article_'+ article.id]">
+        {{article.currency | currencySymbol}}{{article.price | number:'.2-2'}}
+        <input type="checkbox" [formControlName]=" 'article_'+ article.id ">
+      </div>
+      <div class="basketWarning"><div [class.noPrice]="!(article.price>0)">&nbsp;</div></div>
+    </div>
+  </div>
+
+  <div class="cartMsg">
+    <div>{{articlesSelected()}} von {{totalArticles()}} Artikel sind für den Einkauf ausgewählt.</div>
+    <div class="cartMsgAttention" *ngIf="attentionItems()">Ausgewählte Artikel benötigen zusätzliche Informationen. </div>
+  </div>
+
+  <div class="basketTable total">
+    <div class="basketRow">
+      <div class="basketCell agreeAgb">
+        <input type="checkbox" id="acceptAgb" formControlName="acceptAgb"> <label for="acceptAgb"> Ich akzeptiere die AGB und Datenschutzrichtlinien.</label>
+      </div>
+      <div class="basketCell buttons">
+        <div class="button" [class.disabled]="!isCheckoutActive()" (click)="doCheckout()">Checkout</div>
+      </div>
+      <div class="basketCell totalPrice">
+        {{cart.currency | currencySymbol}}{{getTotalPrice() | number:'.2-2'}}
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+
+<app-modal-detail *ngIf="detailArticle && detailArticle.asset" [article]="detailArticle" (close)="closeArticleDetail()"></app-modal-detail>

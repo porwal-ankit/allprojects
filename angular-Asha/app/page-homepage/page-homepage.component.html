@@ -1,0 +1,14 @@
+<div class="search" [formGroup]="form">
+    <mat-form-field >
+        <input #searchHomeBox type="search" matInput class="search" placeholder="Suchen" formControlName="search" (keyup)="checkSearch($event)" [matAutocomplete]="auto">
+    </mat-form-field>
+
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of options | async" [value]="option.value" [innerHTML]="option.text"></mat-option>
+    </mat-autocomplete>
+    <i class="material-icons">search</i>
+</div>
+<!-- <div [ngStyle]="{'background-image': 'url(\''+ mainImage +'\')'}"></div> -->
+<div [ngStyle]="{'background-image': 'url(assets/img/683660.jpg)'}"></div>
+<!-- <div class="fader" [ngStyle]="{'background-image': 'url(\''+ fadeImage +'\')', 'opacity': fadeOpacity}"></div>
+ -->

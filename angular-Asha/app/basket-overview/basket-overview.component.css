@@ -1,0 +1,337 @@
+
+.headerWrapper div {
+    vertical-align: top;
+    display: inline-block;
+    position: relative;
+    height: 18px;
+    margin-top: 2px;
+}
+
+.headerWrapper div svg {
+    height: 100%;
+    margin-left: 6px;
+    fill: #666;
+}
+
+.headerWrapper div svg:hover {
+    fill: #007aff;
+    cursor: pointer;
+}
+
+.headerWrapper div svg:active {
+    fill: red;
+    cursor: pointer;
+}
+
+.headerWrapper {
+    display: table;
+    width: 100%;
+    margin-top: 18px;
+    margin-bottom: -20px;
+}
+
+.headerWrapper>div {
+    display: table-cell;
+    padding-left: 18px;
+    padding-right: 18px;
+    white-space: nowrap;
+    width: 33%;
+}
+
+.headerWrapper div:nth-of-type(1) {
+    text-align: left;
+}
+
+.headerWrapper div:nth-of-type(2) {
+    width: 34%;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.headerWrapper div:nth-of-type(3) {
+    text-align: right;
+}
+
+
+
+.basketTable {
+    display: table;
+    width: calc(100% - 36px);
+    margin: 18px;
+}
+
+.basketRow {
+    display: table-row;
+}
+
+.basketCell {
+    display: table-cell;
+}
+
+
+.basketEntry {
+    display: table-row;
+}
+
+.basketEntry>div {
+    display: table-cell;
+    white-space: nowrap;
+    vertical-align: top;
+    border-bottom: solid 1px #ccc;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    box-sizing: content-box;
+}
+
+
+.basketImgPic>img {
+    height: 115px;
+    max-width: 100%;
+}
+
+.basketImgCtrl {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 13px;
+}
+
+.separator {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.basketData>div {
+    display: block;
+}
+
+.basketData>div>div {
+    display: inline-block;
+}
+
+.license>span {
+    white-space: pre;
+}
+
+.basketData .title {
+    width: 90px;
+    font-weight: 600;
+    line-height: 16px;
+    text-align: right;
+    margin-right: 10px;
+    vertical-align: top;
+}
+
+.basketEntry .basketPrice {
+    text-align: right;
+    width: 150px;
+    font-size: 22px;
+    font-weight: bold;
+    vertical-align: middle;
+    padding-bottom: 20px;
+}
+
+.basketPrice input {
+    /*vertical-align: baseline;*/
+    margin-left: 10px;
+}
+
+.basketPrice.notSelected {
+    color: #aaa;
+}
+
+.basketEntry .basketWarning {
+    width: 7px;
+}
+
+.basketWarning .noPrice {
+    background-color: #ff3824;
+    height: 140px;
+    width: 7px;
+    margin-left: 15px;
+}
+
+.cartMsg {
+    width: 100%;
+    padding: 0 18px;
+}
+
+.cartMsg>div {
+    float: right;
+    padding-left: 8px;
+}
+
+.cartMsgAttention {
+    color: #f00;
+}
+
+.button {
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    border-radius: 7px;
+    padding-top: 8px;
+    padding-right: 16px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 22px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    transition: background-color 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-left-style: none;
+    white-space: nowrap;
+}
+
+.button.disabled {
+    color: #aaa;
+    background-color: #888;
+}
+
+.basketCell.buttons {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.basketCell.totalPrice {
+    text-align: right;
+    font-size: 22px;
+    font-weight: bold;
+    vertical-align: middle;
+    padding-right: 50px;
+}
+
+.basketTable.total {
+    padding-top: 20px;
+    font-size: 14px;
+}
+
+.basketTable.total label {
+    font-weight: normal;
+}
+
+.basketTable.total .basketCell {
+    vertical-align: middle;
+}
+
+.basketCell.agreeAgb {
+    text-align: right;
+}
+
+@media only screen and (max-width: 800px) {
+
+    .basketEntry {
+        display: block;
+        border-bottom: solid 1px #ccc;
+        padding-top: 20px;
+        position: relative;
+    }
+
+    .basketEntry>div {
+        display: block;
+        border: none;
+        padding: 0;
+    }
+
+    .headerWrapper>div {
+        display: block;
+    }
+
+    .basketImgPic, .basketImgCtrl {
+        text-align:center;
+    }
+
+    .basketData {
+        white-space: normal !important;
+    }
+
+    .data .separator::after {
+        content: "\A";
+        white-space: pre;
+    }
+
+    .data .separator {
+        visibility: hidden;
+    }
+
+    .basketImgCtrl {
+        padding-top: 2px;
+        padding-bottom: 10px;
+    }
+
+    .basketPrice {
+        width: auto !important;
+    }
+
+    .basketWarning {
+        position: absolute;
+        left: -15px;
+        top: 0;
+        width: 7px;
+        height: 100%
+    }
+
+    .basketWarning .noPrice {
+        height: 100%;
+    }
+
+    .basketRow {
+        display: block;
+    }
+
+    .basketCell {
+        display: block;
+    }
+
+    .basketCell label {
+        display: inline;
+    }
+
+    .basketCell.agreeAgb {
+        text-align: left;
+    }
+
+    .basketCell.buttons {
+        text-align: center;
+    }
+
+    .basketTable.total {
+        padding-bottom: 30px;
+        padding-top: 60px;
+        position: relative;
+    }
+
+    .basketCell.totalPrice {
+        padding-right: 30px;
+        position: absolute;
+        right: 0;
+        top: 15px;
+    }
+
+}
+
+.need-to-call-us {
+    color: #f00;
+}
+
+.paymentProcessWarning {
+    font-size: 12px;
+    margin-bottom: 25px;
+    color: #f00;
+    text-align: center !important;
+    text-transform: none;
+}
+
+.paymentProcessWarning a {
+    color: #f00;
+    text-decoration: underline;
+}

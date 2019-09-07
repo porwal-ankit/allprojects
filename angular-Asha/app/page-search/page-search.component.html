@@ -1,0 +1,113 @@
+<div [ngClass]="{'showSearchFilters': showSearchFilters}">
+    <div id="matrix-header">
+        <div class="search-filter-handle"> <a (click)="toggleSearchFilters()"><span id="swapWords_show"> </span><span id="swapWords_hide">Schliesse den </span> Suchfilter</a></div>
+        <div class="found-criteria">
+            <ng-container *ngFor="let breadcrumb of searchFilterBredcrumbs; let first = first; let i = index;">
+                <ng-container *ngIf="!first"> &nbsp;→ </ng-container>
+                {{breadcrumb.text}} &nbsp;<span class="removeFilter" (click)="removeBreadcrumbFilter(i)">[X]</span>
+            </ng-container>
+        </div>
+        <div class="found-count" *ngIf="totalItems!==false"><span>Gefundene Medien: </span><span class="found-count-number">{{totalItems}}</span></div>
+    </div>
+
+    <div id="search-filter-wrapper">
+        <form [formGroup]="filterForm">
+            <div id="collectionMode">
+                <h1>Kollektionen</h1>
+                <input id="collectionMode1" type="checkbox" formControlName="collection_0">
+                <label for="collectionMode1">Sodatech Demo</label>
+                <ng-container *ngFor="let collection of collections; let i = index;">
+                    <ng-container *ngIf="collection.visibleInSearch">
+                        <br>
+                        <input id="collectionMode{{i+2}}" type="checkbox" formControlName="collection_{{collection.id}}">
+                        <label for="collectionMode{{i+2}}">{{collection.name}}</label>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <div id="licenseMode">
+                <h1>Lizenz Typ</h1>
+                <input id="licenseMode1" type="radio" value="" checked="" formControlName="license">
+                <label for="licenseMode1">Alle Lizenzen</label>
+                <br>
+                <input id="licenseMode2" type="radio" value="rf" formControlName="license">
+                <label for="licenseMode2"> RF (Royalty-Free)</label>
+                <br>
+                <input id="licenseMode3" type="radio" value="rm" formControlName="license">
+                <label for="licenseMode3">RM (Rights Managed)</label>
+            </div>
+            <div id="orientationMode">
+                <h1>Ausrichtung</h1>
+                <input id="orientationMode1" type="radio" value="" checked="" formControlName="orientation">
+                <label for="orientationMode1">Alle Ausrichtungen</label>
+                <br>
+                <input id="orientationMode2" type="radio" value="h" formControlName="orientation">
+                <label for="orientationMode2">Horizontal</label>
+                <br>
+                <input id="orientationMode3" type="radio" value="v" formControlName="orientation">
+                <label for="orientationMode3">Vertikal</label>
+            </div>
+            <div id="formatMode">
+                <h1>Format</h1>
+                <input id="formatMode1" type="radio" value="" checked="checked" formControlName="format">
+                <label for="formatMode1">Alle Formate</label>
+                <br>
+                <input id="formatMode2" type="radio" value="r" formControlName="format">
+                <label for="formatMode2">Rechteckig</label>
+                <br>
+                <input id="formatMode3" type="radio" value="p" formControlName="format">
+                <label for="formatMode3">Panorama</label>
+            </div>
+            <div id="sizeMode">
+                <h1>Grössen</h1>
+                <input id="sizeMode1" type="radio" value="" checked="" formControlName="size">
+                <label for="sizeMode1">Alle Grössen</label>
+                <br>
+                <input id="sizeMode2" type="radio" value="5" formControlName="size">
+                <label for="sizeMode2">&gt; 5 MP (14.5 MB) </label>
+                <br>
+                <input id="sizeMode3" type="radio" value="12" formControlName="size">
+                <label for="sizeMode3">&gt; 12 MP (34.3 MB)</label>
+                <br>
+                <input id="sizeMode4" type="radio" value="25" formControlName="size">
+                <label for="sizeMode4">&gt; 25 MP (71.5 MB)</label>
+                <br>
+                <input id="sizeMode5" type="radio" value="35" formControlName="size">
+                <label for="sizeMode5">&gt; 35 MP (101 MB)</label>
+                <br>
+                <input id="sizeMode6" type="radio" value="70" formControlName="size">
+                <label for="sizeMode6">&gt; 70 MP (210 MB)</label>
+                <br>
+                <input id="sizeMode7" type="radio" value="150" formControlName="size">
+                <label for="sizeMode7">&gt; 150 MP (450 MB)</label>
+                <br>
+                <input id="sizeMode8" type="radio" value="custom" formControlName="size">
+                <label for="sizeMode8">&gt; <input type="text" formControlName="sizeCustom" id="sizeCustom" (keyup)="selectCustomSize()"> MB</label>
+            </div>
+            <div id="colorMode">
+                <h1>Farbfilter</h1>
+                <input id="colorMode1" type="radio" value="" formControlName="color">
+                <label for="colorMode1">Alle Farben</label>
+                <br>
+                <input id="colorMode2" type="radio" value="c" formControlName="color">
+                <label for="colorMode2">Farben</label>
+                <br>
+                <input id="colorMode4" type="radio" value="mch" formControlName="color">
+                <label for="colorMode4">Monochrom</label>
+                <br>
+                <input id="colorMode3" type="radio" value="bw" formControlName="color">
+                <label for="colorMode3">Schwarz &amp; Weiss</label>
+            </div>
+
+            <div id="keywordsList" *ngIf="faceted && faceted.keywords">
+                <h1>Keywords</h1>
+                <a *ngFor="let facet of getFacetKeys('keywords');" (click)="searchKeyword(facet)"><span class="facetedKeyword">{{facet}}</span> <span class="facetedCount">({{faceted.keywords[facet]}})</span></a>
+            </div>
+        </form>
+    </div>
+
+    <app-asset-list #assetListContainer></app-asset-list>
+
+    <div *ngIf="dataLoading" id="loadingIndicator">
+        <svg class="loading" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">          <g>         <animate attributeName="opacity" dur="2s" repeatCount="indefinite" begin="0s" keyTimes="0;0.33;1"                  values="1;1;0"></animate>         <circle cx="50" cy="50" r="40" class="stroke-color-1" fill="none" stroke-width="6" stroke-linecap="round">             <animate attributeName="r" dur="2s" repeatCount="indefinite" begin="0s" keyTimes="0;0.33;1"                      values="0;22;44"></animate>         </circle>     </g>     <g>         <animate attributeName="opacity" dur="2s" repeatCount="indefinite" begin="1s" keyTimes="0;0.33;1"                  values="1;1;0"></animate>         <circle cx="50" cy="50" r="40" class="stroke-color-2" fill="none" stroke-width="6" stroke-linecap="round">             <animate attributeName="r" dur="2s" repeatCount="indefinite" begin="1s" keyTimes="0;0.33;1"                      values="0;22;44"></animate>         </circle>     </g> </svg>
+    </div>
+</div>

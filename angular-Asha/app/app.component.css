@@ -1,0 +1,7 @@
+:host {
+    padding: 50px 0 0;
+    min-height: 100% !important;
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+}

@@ -1,0 +1,14 @@
+
+<div id="bkg_fog"></div>
+
+<div id="popup_window" [ngStyle]="{'width': width, 'height': height}">
+  <div id="popup_close" (click)="closePopup()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+    <circle class="close-o" fill="#00AEEF" cx="128" cy="128" r="128"></circle>
+    <polygon class="close-x" points="205.4053,64.7378 191.2627,50.5952 128,113.8574 64.7378,50.5952 50.5952,64.7378 113.8574,128 50.5952,191.2627 64.7378,205.4053 128,142.1426 191.2627,205.4053 205.4053,191.2627 142.1426,128 "></polygon>
+  </svg>
+  </div>
+  <div id="popup_content">
+    <ng-content></ng-content>
+  </div>
+</div>
+
